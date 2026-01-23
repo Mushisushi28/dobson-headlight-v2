@@ -42,8 +42,16 @@ export async function getChatResponse(history: { role: 'user' | 'model', parts: 
   });
 
   try {
+    let previousHistory = history.slice(0, -1);
+    const lastMessage = history[history.length - 1].parts[0].text;
+
+    // Gemini requires chat history to start with a user message
+    while (previousHistory.length > 0 && previousHistory[0].role !== 'user') {
+      previousHistory.shift();
+    }
+
     const chat = model.startChat({
-      history: history,
+      history: previousHistory,
       generationConfig: {
         temperature: 0.7,
         topP: 0.8,
@@ -51,7 +59,6 @@ export async function getChatResponse(history: { role: 'user' | 'model', parts: 
       },
     });
 
-    const lastMessage = history[history.length - 1].parts[0].text;
     const result = await chat.sendMessage(lastMessage);
     const response = await result.response;
     return response.text();
