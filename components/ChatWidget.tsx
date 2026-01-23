@@ -85,7 +85,7 @@ const ChatWidget: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-[100]">
+    <div className="fixed bottom-24 right-6 md:bottom-8 md:right-8 z-[100]">
       {isOpen ? (
         <div className="bg-white w-[350px] sm:w-[400px] h-[600px] max-h-[85vh] rounded-[2rem] shadow-[0_32px_128px_-32px_rgba(0,0,0,0.5)] border border-slate-200 flex flex-col overflow-hidden animate-in slide-in-from-bottom-8 duration-500 ease-out">
           <div className="p-5 bg-slate-950 text-white flex justify-between items-center relative overflow-hidden">
@@ -110,8 +110,8 @@ const ChatWidget: React.FC = () => {
             {messages.map((m, i) => (
               <div key={i} className={`flex flex-col ${m.role === 'user' ? 'items-end' : 'items-start'}`}>
                 <div className={`max-w-[85%] p-4 rounded-[1.5rem] text-sm font-semibold leading-relaxed shadow-sm whitespace-pre-wrap ${m.role === 'user'
-                    ? 'bg-slate-950 text-white rounded-tr-none'
-                    : 'bg-white text-slate-800 border border-slate-200/60 rounded-tl-none'
+                  ? 'bg-slate-950 text-white rounded-tr-none'
+                  : 'bg-white text-slate-800 border border-slate-200/60 rounded-tl-none'
                   }`}>
                   {m.text}
                 </div>

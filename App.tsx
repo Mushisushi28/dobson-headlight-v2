@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Analytics } from "@vercel/analytics/react"
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -24,6 +24,22 @@ const GoogleIcon = () => (
 );
 
 function App() {
+  const [showStickyCTA, setShowStickyCTA] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show button after scrolling past hero (approx 600px)
+      if (window.scrollY > 600) {
+        setShowStickyCTA(true);
+      } else {
+        setShowStickyCTA(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
@@ -220,22 +236,11 @@ function App() {
 
       <Footer />
       <ChatWidget />
-      <ChatWidget />
 
       {/* Mobile Sticky CTA */}
-      <div className="fixed bottom-4 left-4 right-4 z-50 md:hidden">
+      <div className={`fixed bottom-0 left-0 right-0 z-50 md:hidden p-4 bg-slate-950/80 backdrop-blur-lg border-t border-white/10 transition-all duration-500 transform ${showStickyCTA ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}>
         <button
-          onClick={() => {
-            const el = document.getElementById('contact');
-            if (el) {
-              const offset = 100;
-              const bodyRect = document.body.getBoundingClientRect().top;
-              const elementRect = el.getBoundingClientRect().top;
-              const elementPosition = elementRect - bodyRect;
-              const offsetPosition = elementPosition - offset;
-              window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-            }
-          }}
+          onClick={() => scrollTo('contact')}
           className="w-full py-4 bg-yellow-400 text-black font-black uppercase tracking-widest rounded-2xl shadow-2xl flex items-center justify-center gap-2 border border-white/20"
         >
           <Zap size={20} /> Book Fast Quote
