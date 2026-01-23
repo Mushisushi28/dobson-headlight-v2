@@ -76,7 +76,7 @@ const Hero: React.FC = () => {
                 <img
                   src="https://i.ibb.co/QFhDNcgn/20260106-175851-1.jpg"
                   alt="Before Headlight Restoration"
-                  className="h-full w-full object-cover grayscale"
+                  className="h-full w-full object-cover"
                 />
                 <div className="absolute top-4 left-4 px-3 py-1 bg-black/80 backdrop-blur-md text-white text-[10px] font-black uppercase tracking-widest rounded border border-white/10">Dangerous & Faded</div>
               </div>
