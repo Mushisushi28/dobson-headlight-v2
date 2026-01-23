@@ -1,9 +1,13 @@
 
 import React from 'react';
 import { Check, Sparkles, ShieldCheck, Zap, AlertTriangle, TrendingDown } from 'lucide-react';
-import { PACKAGES } from '../constants';
+import { PACKAGES, FLEET_PACKAGES } from '../constants';
 
 const Services: React.FC = () => {
+  const [activeTab, setActiveTab] = React.useState<'residential' | 'commercial'>('residential');
+
+  const displayedPackages = activeTab === 'residential' ? PACKAGES : FLEET_PACKAGES;
+
   return (
     <section id="services" className="py-24 bg-white scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -13,18 +17,34 @@ const Services: React.FC = () => {
             <p className="text-slate-500 text-lg leading-relaxed font-medium">We don't do wipe-on fixes. Every restoration includes multi-step leveling and professional UV protection.</p>
           </div>
           <div className="hidden lg:flex gap-4 p-1.5 bg-slate-100 rounded-2xl border border-slate-200">
-            <div className="px-4 py-2 bg-slate-950 text-white rounded-xl shadow-sm text-sm font-bold">Residential</div>
-            <div className="px-4 py-2 text-sm font-bold text-slate-500">Commercial/Fleet</div>
+            <button
+              onClick={() => setActiveTab('residential')}
+              className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${activeTab === 'residential'
+                  ? 'bg-slate-950 text-white shadow-sm'
+                  : 'text-slate-500 hover:text-slate-900'
+                }`}
+            >
+              Residential
+            </button>
+            <button
+              onClick={() => setActiveTab('commercial')}
+              className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${activeTab === 'commercial'
+                  ? 'bg-slate-950 text-white shadow-sm'
+                  : 'text-slate-500 hover:text-slate-900'
+                }`}
+            >
+              Commercial/Fleet
+            </button>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
-          {PACKAGES.map((pkg) => (
+          {displayedPackages.map((pkg) => (
             <div
               key={pkg.id}
               className={`relative flex flex-col p-10 rounded-[2.5rem] transition-all duration-500 hover:-translate-y-2 border-2 ${pkg.popular
-                  ? 'bg-slate-950 text-white border-yellow-400 shadow-2xl scale-105 z-10'
-                  : 'bg-white text-slate-900 border-slate-100 shadow-sm hover:shadow-xl hover:border-yellow-200'
+                ? 'bg-slate-950 text-white border-yellow-400 shadow-2xl scale-105 z-10'
+                : 'bg-white text-slate-900 border-slate-100 shadow-sm hover:shadow-xl hover:border-yellow-200'
                 }`}
             >
               {pkg.popular && (
@@ -60,8 +80,8 @@ const Services: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`w-full py-5 rounded-2xl font-black text-center transition-all ${pkg.popular
-                    ? 'bg-yellow-400 text-black hover:bg-yellow-300 shadow-xl shadow-yellow-400/20'
-                    : 'bg-slate-950 text-white hover:bg-slate-800 shadow-lg'
+                  ? 'bg-yellow-400 text-black hover:bg-yellow-300 shadow-xl shadow-yellow-400/20'
+                  : 'bg-slate-950 text-white hover:bg-slate-800 shadow-lg'
                   }`}
               >
                 Choose Package

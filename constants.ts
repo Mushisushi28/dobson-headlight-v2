@@ -44,6 +44,49 @@ export const PACKAGES: ServicePackage[] = [
   }
 ];
 
+export const FLEET_PACKAGES: ServicePackage[] = [
+  {
+    id: 'fleet-maintenance',
+    name: 'Fleet Maintenance',
+    priceRange: '$79+',
+    description: 'Volume-based regular maintenance for active service vehicles.',
+    features: [
+      'Volume Discount (5+ Vehicles)',
+      'On-Site Service Available',
+      'Annual Maintenance Schedule',
+      'DOT Compliance Check',
+      'Priority Booking'
+    ]
+  },
+  {
+    id: 'commercial-heavy',
+    name: 'Heavy Duty / Semi',
+    priceRange: '$149+',
+    popular: true,
+    description: 'Specialized restoration for large surface area truck lenses.',
+    features: [
+      'Heavy Duty UV Protection',
+      'Deep Oxidation Removal',
+      'Stone Chip Smoothing',
+      'Minimized Downtime Service',
+      'Full Clarity Guarantee'
+    ]
+  },
+  {
+    id: 'dealership',
+    name: 'Dealership Partner',
+    priceRange: 'Wholesale',
+    description: 'Maximize resale value for pre-owned inventory.',
+    features: [
+      'Wholesale Partner Pricing',
+      'Same-Day Turnaround',
+      'Inventory Assessment',
+      'Billing Accounts Available',
+      'Before/After Documentation'
+    ]
+  }
+];
+
 export const FAQS = [
   {
     question: "What are your business hours?",
