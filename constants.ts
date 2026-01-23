@@ -10,7 +10,7 @@ export const PACKAGES: ServicePackage[] = [
     features: [
       'Multi-step oxidation leveling',
       'Precision machine polishing',
-      'Industrial UV Top Coat (2 Layers)',
+      'Industrial UV Top Coat',
       '1-Year Clarity Warranty',
       'Heated Shop Service'
     ]
@@ -23,7 +23,7 @@ export const PACKAGES: ServicePackage[] = [
     description: 'Maximum durability for long-term Southern Alberta sun.',
     features: [
       'Everything in Standard',
-      'Ceramic Pro 9H Coating (3 Layers)',
+      'Ceramic Pro 9H Coating',
       'Fog light treatment included',
       '5-Year Clarity Warranty',
       'Highest UV resistance possible'
