@@ -7,8 +7,8 @@ import { Message, ChatAction } from '../types';
 const ChatWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { 
-      role: 'model', 
+    {
+      role: 'model',
       text: "Hi! I'm DobsonAI. Ready to restore your headlights? I can help you book an appointment or get an instant quote.",
       actions: [
         { label: 'Get a Quote', type: 'scroll', value: 'contact' },
@@ -29,7 +29,7 @@ const ChatWidget: React.FC = () => {
   const parseActions = (text: string): { cleanText: string, actions: ChatAction[] } => {
     const actionRegex = /\[ACTIONS:\s*(\[.*?\])\s*\]/g;
     const match = actionRegex.exec(text);
-    
+
     if (match && match[1]) {
       try {
         const actions = JSON.parse(match[1]);
@@ -79,7 +79,7 @@ const ChatWidget: React.FC = () => {
 
     const rawResponse = await getChatResponse(history);
     const { cleanText, actions } = parseActions(rawResponse);
-    
+
     setMessages(prev => [...prev, { role: 'model', text: cleanText, actions }]);
     setIsLoading(false);
   };
@@ -97,7 +97,7 @@ const ChatWidget: React.FC = () => {
               <div>
                 <div className="font-black text-base uppercase tracking-tight">DobsonAI</div>
                 <div className="text-[10px] text-yellow-400 flex items-center gap-1.5 font-black uppercase tracking-widest">
-                  <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse"></span> Mobile Specialist
+                  <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse"></span> Headlight Specialist
                 </div>
               </div>
             </div>
@@ -109,14 +109,13 @@ const ChatWidget: React.FC = () => {
           <div ref={scrollRef} className="flex-grow p-4 overflow-y-auto space-y-6 bg-slate-50/50">
             {messages.map((m, i) => (
               <div key={i} className={`flex flex-col ${m.role === 'user' ? 'items-end' : 'items-start'}`}>
-                <div className={`max-w-[85%] p-4 rounded-[1.5rem] text-sm font-semibold leading-relaxed shadow-sm whitespace-pre-wrap ${
-                  m.role === 'user' 
-                  ? 'bg-slate-950 text-white rounded-tr-none' 
-                  : 'bg-white text-slate-800 border border-slate-200/60 rounded-tl-none'
-                }`}>
+                <div className={`max-w-[85%] p-4 rounded-[1.5rem] text-sm font-semibold leading-relaxed shadow-sm whitespace-pre-wrap ${m.role === 'user'
+                    ? 'bg-slate-950 text-white rounded-tr-none'
+                    : 'bg-white text-slate-800 border border-slate-200/60 rounded-tl-none'
+                  }`}>
                   {m.text}
                 </div>
-                
+
                 {m.actions && m.actions.length > 0 && (
                   <div className="flex flex-wrap gap-2 mt-3 max-w-[90%]">
                     {m.actions.map((action, idx) => (
@@ -125,9 +124,9 @@ const ChatWidget: React.FC = () => {
                         onClick={() => handleAction(action)}
                         className="flex items-center gap-2 px-4 py-2.5 bg-yellow-400 text-black text-xs font-black rounded-xl hover:bg-yellow-300 transition-all shadow-md shadow-yellow-400/10 uppercase tracking-tight active:scale-95"
                       >
-                        {action.type === 'link' ? <Calendar size={14} /> : 
-                         action.label.toLowerCase().includes('quote') ? <Camera size={14} /> : 
-                         <ArrowRight size={14} />}
+                        {action.type === 'link' ? <Calendar size={14} /> :
+                          action.label.toLowerCase().includes('quote') ? <Camera size={14} /> :
+                            <ArrowRight size={14} />}
                         {action.label}
                       </button>
                     ))}
@@ -148,15 +147,15 @@ const ChatWidget: React.FC = () => {
 
           <div className="p-4 bg-white border-t border-slate-100">
             <div className="flex gap-2">
-              <input 
-                type="text" 
+              <input
+                type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleSend()}
                 placeholder="Ask a question..."
                 className="flex-grow p-4 bg-slate-100 border-none rounded-2xl text-sm font-bold placeholder:text-slate-400 focus:ring-2 focus:ring-yellow-400 transition-all outline-none"
               />
-              <button 
+              <button
                 onClick={() => handleSend()}
                 disabled={isLoading}
                 className="w-12 h-12 flex items-center justify-center bg-slate-950 text-white rounded-2xl hover:bg-black transition-colors disabled:opacity-50 shadow-xl shadow-slate-900/10"
@@ -170,12 +169,12 @@ const ChatWidget: React.FC = () => {
           </div>
         </div>
       ) : (
-        <button 
+        <button
           onClick={() => setIsOpen(true)}
           className="w-20 h-20 bg-yellow-400 text-black rounded-[2rem] shadow-[0_20px_50px_rgba(250,204,21,0.3)] flex items-center justify-center hover:scale-110 active:scale-95 transition-all hover:bg-yellow-300 group relative border-4 border-slate-950"
         >
           <div className="absolute -top-3 -right-3 w-8 h-8 bg-slate-950 text-white rounded-full flex items-center justify-center border-4 border-white animate-bounce shadow-lg">
-             <Sparkles className="w-3.5 h-3.5 text-yellow-400" />
+            <Sparkles className="w-3.5 h-3.5 text-yellow-400" />
           </div>
           <MessageCircle className="w-9 h-9" />
           <span className="absolute right-full mr-6 bg-slate-950 text-white text-[10px] font-black py-3 px-5 rounded-2xl opacity-0 group-hover:opacity-100 transition-all pointer-events-none shadow-2xl uppercase tracking-[0.2em] translate-x-10 group-hover:translate-x-0">
