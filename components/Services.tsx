@@ -20,8 +20,8 @@ const Services: React.FC = () => {
             <button
               onClick={() => setActiveTab('residential')}
               className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${activeTab === 'residential'
-                  ? 'bg-slate-950 text-white shadow-sm'
-                  : 'text-slate-500 hover:text-slate-900'
+                ? 'bg-slate-950 text-white shadow-sm'
+                : 'text-slate-500 hover:text-slate-900'
                 }`}
             >
               Residential
@@ -29,8 +29,8 @@ const Services: React.FC = () => {
             <button
               onClick={() => setActiveTab('commercial')}
               className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${activeTab === 'commercial'
-                  ? 'bg-slate-950 text-white shadow-sm'
-                  : 'text-slate-500 hover:text-slate-900'
+                ? 'bg-slate-950 text-white shadow-sm'
+                : 'text-slate-500 hover:text-slate-900'
                 }`}
             >
               Commercial/Fleet
@@ -76,7 +76,7 @@ const Services: React.FC = () => {
               </div>
 
               <a
-                href="https://koalendar.com/e/meet-with-isaac-dobson"
+                href={pkg.ctaUrl || "https://koalendar.com/e/meet-with-isaac-dobson"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`w-full py-5 rounded-2xl font-black text-center transition-all ${pkg.popular
@@ -84,7 +84,7 @@ const Services: React.FC = () => {
                   : 'bg-slate-950 text-white hover:bg-slate-800 shadow-lg'
                   }`}
               >
-                Choose Package
+                {pkg.ctaText || "Choose Package"}
               </a>
             </div>
           ))}

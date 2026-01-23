@@ -18,6 +18,8 @@ export interface ServicePackage {
   description: string;
   features: string[];
   popular?: boolean;
+  ctaUrl?: string;
+  ctaText?: string;
 }
 
 export interface Review {

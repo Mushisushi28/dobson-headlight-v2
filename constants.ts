@@ -50,6 +50,8 @@ export const FLEET_PACKAGES: ServicePackage[] = [
     name: 'Fleet Maintenance',
     priceRange: '$79+',
     description: 'Volume-based regular maintenance for active service vehicles.',
+    ctaUrl: 'mailto:dobsonheadlights@gmail.com',
+    ctaText: 'Email for Quote',
     features: [
       'Volume Discount (5+ Vehicles)',
       'On-Site Service Available',
@@ -64,6 +66,8 @@ export const FLEET_PACKAGES: ServicePackage[] = [
     priceRange: '$149+',
     popular: true,
     description: 'Specialized restoration for large surface area truck lenses.',
+    ctaUrl: 'mailto:dobsonheadlights@gmail.com',
+    ctaText: 'Email for Quote',
     features: [
       'Heavy Duty UV Protection',
       'Deep Oxidation Removal',
@@ -77,6 +81,8 @@ export const FLEET_PACKAGES: ServicePackage[] = [
     name: 'Dealership Partner',
     priceRange: 'Wholesale',
     description: 'Maximize resale value for pre-owned inventory.',
+    ctaUrl: 'mailto:dobsonheadlights@gmail.com',
+    ctaText: 'Email for Quote',
     features: [
       'Wholesale Partner Pricing',
       'Same-Day Turnaround',
