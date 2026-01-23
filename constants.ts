@@ -8,11 +8,11 @@ export const PACKAGES: ServicePackage[] = [
     priceRange: '$99+',
     description: 'Professional multi-step process for common oxidation.',
     features: [
-      'Multi-step oxidation leveling', 
-      'Precision machine polishing', 
-      'Industrial UV top coat', 
+      'Multi-step oxidation leveling',
+      'Precision machine polishing',
+      'Industrial UV top coat',
       '1-2 Year Clarity Protection',
-      'Mobile service included'
+      'Heated Shop Service'
     ]
   },
   {
@@ -22,9 +22,9 @@ export const PACKAGES: ServicePackage[] = [
     popular: true,
     description: 'Maximum durability for long-term Southern Alberta sun.',
     features: [
-      'Everything in Standard', 
-      'Upgraded Ceramic Protection', 
-      'Fog light treatment included', 
+      'Everything in Standard',
+      'Upgraded Ceramic Protection',
+      'Fog light treatment included',
       '5+ Year Clarity Guarantee',
       'Highest UV resistance'
     ]
@@ -36,9 +36,9 @@ export const PACKAGES: ServicePackage[] = [
     description: 'Industrial Ceramic for factory-new headlights to prevent yellowing.',
     features: [
       'Industrial Ceramic Coating',
-      'Decontamination wash', 
-      '5-8 Years of EXTRA clarity', 
-      'Preserve factory clear coat', 
+      'Decontamination wash',
+      '5-8 Years of EXTRA clarity',
+      'Preserve factory clear coat',
       'Stops oxidation before it starts'
     ]
   }
@@ -47,7 +47,7 @@ export const PACKAGES: ServicePackage[] = [
 export const FAQS = [
   {
     question: "What are your business hours?",
-    answer: "We are available for mobile service and inquiries from 8:00 AM to 9:00 PM, Monday through Saturday. We can often accommodate early morning or late evening bookings to fit your work schedule."
+    answer: "We are available for inquiries from 8:00 AM to 9:00 PM, Monday through Saturday. We can often accommodate early morning or late evening bookings to fit your work schedule."
   },
   {
     question: "Do you offer a warranty?",
@@ -55,7 +55,7 @@ export const FAQS = [
   },
   {
     question: "How long does the restoration take?",
-    answer: "Most restorations take between 60 to 90 minutes. Since we are mobile, you can stay in the comfort of your home or continue working while we handle the job."
+    answer: "Most restorations take between 60 to 90 minutes. We have a comfortable waiting area, or you can drop off your vehicle and we'll text you when it's done."
   },
   {
     question: "Do I need to be present during the service?",
@@ -68,7 +68,7 @@ export const FAQS = [
 ];
 
 export const SERVICE_AREAS = [
-  'Cardston', 'Lethbridge', 'Raymond', 'Glenwood', 'Magrath', 
+  'Cardston', 'Lethbridge', 'Raymond', 'Glenwood', 'Magrath',
   'Coaldale', 'Coalhurst', 'Fort Macleod', 'Taber'
 ];
 
