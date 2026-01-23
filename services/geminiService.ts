@@ -1,5 +1,4 @@
-
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const SYSTEM_INSTRUCTION = `
 You are DobsonAI, the friendly and professional assistant for Dobson Headlight Restoration in Southern Alberta. 
@@ -36,21 +35,26 @@ Key Information:
 `;
 
 export async function getChatResponse(history: { role: 'user' | 'model', parts: { text: string }[] }[]) {
-  const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY || '' });
+  const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY || '');
+  const model = genAI.getGenerativeModel({
+    model: "gemini-1.5-flash",
+    systemInstruction: SYSTEM_INSTRUCTION,
+  });
 
   try {
-    const response = await ai.models.generateContent({
-      model: "gemini-3-flash-preview",
-      contents: history,
-      config: {
-        systemInstruction: SYSTEM_INSTRUCTION,
+    const chat = model.startChat({
+      history: history,
+      generationConfig: {
         temperature: 0.7,
         topP: 0.8,
         topK: 40,
       },
     });
 
-    return response.text || "Sorry, I'm having a technical moment. Please text Isaac at 587-402-4794!";
+    const lastMessage = history[history.length - 1].parts[0].text;
+    const result = await chat.sendMessage(lastMessage);
+    const response = await result.response;
+    return response.text();
   } catch (error) {
     console.error("Gemini API Error:", error);
     return "I'm experiencing technical difficulties. Please call or text us at 587-402-4794 for a fast quote!";
