@@ -59,10 +59,10 @@ const GalleryCarousel: React.FC = () => {
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
       const { scrollLeft, clientWidth } = scrollContainerRef.current;
-      const scrollTo = direction === 'left' 
-        ? scrollLeft - clientWidth 
+      const scrollTo = direction === 'left'
+        ? scrollLeft - clientWidth
         : scrollLeft + clientWidth;
-      
+
       scrollContainerRef.current.scrollTo({
         left: scrollTo,
         behavior: 'smooth'
@@ -73,33 +73,35 @@ const GalleryCarousel: React.FC = () => {
   return (
     <div className="relative group">
       {/* Navigation Arrows - Desktop */}
-      <button 
+      <button
         onClick={() => scroll('left')}
+        aria-label="Scroll gallery left"
         className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-yellow-400 hover:text-black transition-all opacity-0 group-hover:opacity-100 hidden md:flex"
       >
         <ChevronLeft size={24} />
       </button>
-      
-      <button 
+
+      <button
         onClick={() => scroll('right')}
+        aria-label="Scroll gallery right"
         className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-yellow-400 hover:text-black transition-all opacity-0 group-hover:opacity-100 hidden md:flex"
       >
         <ChevronRight size={24} />
       </button>
 
       {/* Horizontal Scroll Container */}
-      <div 
+      <div
         ref={scrollContainerRef}
         className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-8 px-4 sm:px-0"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {shuffledGallery.map((item, i) => (
           <div key={i} className="min-w-full sm:min-w-[45%] lg:min-w-[23%] snap-start">
-            <GalleryItem 
-              before={item.before} 
-              after={item.after} 
-              label={item.label} 
-              description={item.description} 
+            <GalleryItem
+              before={item.before}
+              after={item.after}
+              label={item.label}
+              description={item.description}
             />
           </div>
         ))}

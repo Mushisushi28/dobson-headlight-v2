@@ -10,8 +10,8 @@ export const PACKAGES: ServicePackage[] = [
     features: [
       'Multi-step oxidation leveling',
       'Precision machine polishing',
-      'Industrial UV top coat',
-      '1-2 Year Clarity Protection',
+      'Industrial UV Top Coat (2 Layers)',
+      '1-Year Clarity Warranty',
       'Heated Shop Service'
     ]
   },
@@ -23,10 +23,10 @@ export const PACKAGES: ServicePackage[] = [
     description: 'Maximum durability for long-term Southern Alberta sun.',
     features: [
       'Everything in Standard',
-      'Upgraded Ceramic Protection',
+      'Ceramic Pro 9H Coating (3 Layers)',
       'Fog light treatment included',
-      '5+ Year Clarity Guarantee',
-      'Highest UV resistance'
+      '5-Year Clarity Warranty',
+      'Highest UV resistance possible'
     ]
   },
   {
@@ -37,8 +37,8 @@ export const PACKAGES: ServicePackage[] = [
     features: [
       'Industrial Ceramic Coating',
       'Decontamination wash',
-      '5-8 Years of EXTRA clarity',
-      'Preserve factory clear coat',
+      'Lifetime Clarity Warranty',
+      'Preserves factory clear coat',
       'Stops oxidation before it starts'
     ]
   }

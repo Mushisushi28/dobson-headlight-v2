@@ -9,6 +9,7 @@ import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 import ChatWidget from './components/ChatWidget';
 import GalleryCarousel from './components/GalleryCarousel';
+import Resources from './components/Resources';
 import FAQ from './components/FAQ';
 import { REVIEWS, SERVICE_AREAS } from './constants';
 import { Star, Shield, Zap, Search, Car, Image as ImageIcon } from 'lucide-react';
@@ -208,6 +209,8 @@ function App() {
           </div>
         </section>
 
+        <Resources />
+
         <Services />
 
         <FAQ />
@@ -217,6 +220,28 @@ function App() {
 
       <Footer />
       <ChatWidget />
+      <ChatWidget />
+
+      {/* Mobile Sticky CTA */}
+      <div className="fixed bottom-4 left-4 right-4 z-50 md:hidden">
+        <button
+          onClick={() => {
+            const el = document.getElementById('contact');
+            if (el) {
+              const offset = 100;
+              const bodyRect = document.body.getBoundingClientRect().top;
+              const elementRect = el.getBoundingClientRect().top;
+              const elementPosition = elementRect - bodyRect;
+              const offsetPosition = elementPosition - offset;
+              window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+            }
+          }}
+          className="w-full py-4 bg-yellow-400 text-black font-black uppercase tracking-widest rounded-2xl shadow-2xl flex items-center justify-center gap-2 border border-white/20"
+        >
+          <Zap size={20} /> Book Fast Quote
+        </button>
+      </div>
+
       <Analytics />
     </div>
   );

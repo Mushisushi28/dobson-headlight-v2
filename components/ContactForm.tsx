@@ -19,7 +19,7 @@ const ContactForm: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
     setError(null);
-    
+
     try {
       // Using the provided Formspree ID: mzdezloa
       const response = await fetch('https://formspree.io/f/mzdezloa', {
@@ -69,13 +69,13 @@ const ContactForm: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-slate-950 rounded-[3.5rem] p-10 md:p-20 flex flex-col lg:flex-row gap-16 overflow-hidden relative shadow-[0_40px_100px_-20px_rgba(0,0,0,0.4)] border border-white/5">
           <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_70%_30%,#facc1511_0%,transparent_50%)]"></div>
-          
+
           <div className="lg:w-1/2 relative z-10">
-            <h2 className="text-4xl sm:text-5xl font-black text-white mb-8 leading-tight uppercase tracking-tight">Get Your <br/><span className="text-yellow-400">Free Fast Quote</span></h2>
+            <h2 className="text-4xl sm:text-5xl font-black text-white mb-8 leading-tight uppercase tracking-tight">Get Your <br /><span className="text-yellow-400">Free Fast Quote</span></h2>
             <p className="text-slate-400 text-lg mb-10 leading-relaxed max-w-md">
               Fill out the form below and we'll text you an exact quote within 15 minutes. No obligation, just honest local pricing.
             </p>
-            
+
             <div className="space-y-8">
               {[
                 { icon: Camera, text: "Photos help us give exact quotes fast" },
@@ -102,9 +102,9 @@ const ContactForm: React.FC = () => {
                 <p className="text-slate-400 text-lg leading-relaxed mb-10">
                   Thanks {formData.name.split(' ')[0]}! Check your phone—we'll text you your quote shortly.
                 </p>
-                
+
                 <div className="w-full space-y-4">
-                  <button 
+                  <button
                     onClick={handleWhatsAppRedirect}
                     className="w-full py-5 bg-emerald-500 text-white rounded-2xl font-black flex items-center justify-center gap-3 hover:bg-emerald-400 transition-all shadow-xl shadow-emerald-500/20 uppercase tracking-tight"
                   >
@@ -123,44 +123,48 @@ const ContactForm: React.FC = () => {
                     <p>{error}</p>
                   </div>
                 )}
-                
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <input 
-                    required 
-                    type="text" 
+                  <input
+                    required
+                    type="text"
                     name="name"
-                    placeholder="Full Name" 
+                    aria-label="Full Name"
+                    placeholder="Full Name"
                     value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full px-6 py-5 bg-white/5 border border-white/10 rounded-2xl text-white placeholder:text-slate-500 focus:ring-2 focus:ring-yellow-400 outline-none transition-all font-medium"
                   />
-                  <input 
-                    required 
-                    type="tel" 
+                  <input
+                    required
+                    type="tel"
                     name="phone"
-                    placeholder="Phone Number" 
+                    aria-label="Phone Number"
+                    placeholder="Phone Number"
                     value={formData.phone}
-                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="w-full px-6 py-5 bg-white/5 border border-white/10 rounded-2xl text-white placeholder:text-slate-500 focus:ring-2 focus:ring-yellow-400 outline-none transition-all font-medium"
                   />
                 </div>
-                
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                   <input 
-                    required 
-                    type="text" 
+                  <input
+                    required
+                    type="text"
                     name="vehicle"
-                    placeholder="Year, Make, Model" 
+                    aria-label="Vehicle Make and Model"
+                    placeholder="Year, Make, Model"
                     value={formData.vehicle}
-                    onChange={(e) => setFormData({...formData, vehicle: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, vehicle: e.target.value })}
                     className="w-full px-6 py-5 bg-white/5 border border-white/10 rounded-2xl text-white placeholder:text-slate-500 focus:ring-2 focus:ring-yellow-400 outline-none transition-all font-medium"
                   />
                   <div className="relative">
-                    <select 
+                    <select
                       required
                       name="city"
+                      aria-label="Select City"
                       value={formData.city}
-                      onChange={(e) => setFormData({...formData, city: e.target.value})}
+                      onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                       className="w-full px-6 py-5 bg-white/5 border border-white/10 rounded-2xl text-white focus:ring-2 focus:ring-yellow-400 outline-none transition-all appearance-none cursor-pointer font-medium pr-10"
                     >
                       <option className="bg-slate-900" value="">Select City</option>
@@ -182,12 +186,12 @@ const ContactForm: React.FC = () => {
                       <button
                         key={item.id}
                         type="button"
-                        onClick={() => setFormData({...formData, condition: item.label})}
-                        className={`p-4 rounded-2xl border transition-all text-left flex flex-col gap-2 group ${
-                          formData.condition === item.label 
-                          ? 'bg-yellow-400 border-yellow-400 text-black shadow-lg shadow-yellow-400/20' 
-                          : 'bg-white/5 border-white/10 text-white hover:border-white/30'
-                        }`}
+                        aria-label={`Select condition: ${item.label}`}
+                        onClick={() => setFormData({ ...formData, condition: item.label })}
+                        className={`p-4 rounded-2xl border transition-all text-left flex flex-col gap-2 group ${formData.condition === item.label
+                            ? 'bg-yellow-400 border-yellow-400 text-black shadow-lg shadow-yellow-400/20'
+                            : 'bg-white/5 border-white/10 text-white hover:border-white/30'
+                          }`}
                       >
                         <div className="flex justify-between items-start">
                           <item.icon className={`w-5 h-5 ${formData.condition === item.label ? 'text-black' : 'text-yellow-400'}`} />
@@ -200,8 +204,8 @@ const ContactForm: React.FC = () => {
                     ))}
                   </div>
                 </div>
-                
-                <button 
+
+                <button
                   type="submit"
                   disabled={isSubmitting}
                   className="w-full py-5 bg-yellow-400 text-black font-black text-xl rounded-2xl hover:bg-yellow-300 shadow-2xl shadow-yellow-400/20 transition-all active:scale-95 uppercase tracking-tight flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
@@ -216,7 +220,7 @@ const ContactForm: React.FC = () => {
                     </>
                   )}
                 </button>
-                
+
                 <button
                   type="button"
                   onClick={handleWhatsAppRedirect}
