@@ -1,0 +1,8 @@
+
+{
+  "name": "Dobson Headlight Restoration",
+  "description": "Southern Alberta's premier mobile headlight restoration specialist. Professional clarity and UV protection for Lethbridge, Cardston, and surrounding areas.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
