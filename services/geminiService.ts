@@ -36,8 +36,8 @@ Key Information:
 `;
 
 export async function getChatResponse(history: { role: 'user' | 'model', parts: { text: string }[] }[]) {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
-  
+  const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY || '' });
+
   try {
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",
