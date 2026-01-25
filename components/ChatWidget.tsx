@@ -97,6 +97,22 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ onBookClick }) => {
   };
 
   useEffect(() => {
+    // Auto-trigger 'book' actions
+    if (messages.length > 0) {
+      const lastMessage = messages[messages.length - 1];
+      if (lastMessage.role === 'model' && lastMessage.actions) {
+        const bookAction = lastMessage.actions.find(a => a.type === 'book');
+        if (bookAction) {
+          const timer = setTimeout(() => {
+            handleAction(bookAction);
+          }, 800); // Slight delay for natural feel
+          return () => clearTimeout(timer);
+        }
+      }
+    }
+  }, [messages]);
+
+  useEffect(() => {
     // Auto-open after delay only on desktop
     if (window.innerWidth >= 768) {
       const timer = setTimeout(() => {
