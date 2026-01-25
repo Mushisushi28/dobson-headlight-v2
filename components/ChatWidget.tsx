@@ -89,6 +89,11 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ onBookClick }) => {
     }));
     history.push({ role: 'user', parts: [{ text: userMsg }] });
 
+    // Add context to the latest message for the API
+    const isDesktop = window.innerWidth >= 768;
+    const contextMsg = isDesktop ? "\n[System Context: User is on Desktop]" : "\n[System Context: User is on Mobile]";
+    history[history.length - 1].parts[0].text += contextMsg;
+
     const rawResponse = await getChatResponse(history);
     const { cleanText, actions } = parseActions(rawResponse);
 
