@@ -30,7 +30,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, source = '
             <div
                 className={`relative w-full bg-white rounded-3xl overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-300 pointer-events-auto
                 ${isChatSideMode
-                        ? 'md:fixed md:bottom-8 md:right-[420px] md:w-[500px] md:h-[600px] md:max-h-[85vh] md:origin-bottom-right'
+                        ? 'md:fixed md:bottom-8 md:right-[400px] md:w-[600px] md:h-[700px] md:max-h-[85vh] md:origin-bottom-right'
                         : 'max-w-4xl h-[85vh]'}
                 `}
             >
