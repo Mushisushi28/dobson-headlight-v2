@@ -4,7 +4,11 @@ import { MessageCircle, X, Send, Bot, Calendar, ArrowRight, Camera, Sparkles } f
 import { getChatResponse } from '../services/geminiService';
 import { Message, ChatAction } from '../types';
 
-const ChatWidget: React.FC = () => {
+interface ChatWidgetProps {
+  onBookClick?: () => void;
+}
+
+const ChatWidget: React.FC<ChatWidgetProps> = ({ onBookClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -12,7 +16,7 @@ const ChatWidget: React.FC = () => {
       text: "Hi! I'm DobsonAI. Ready to restore your headlights? I can help you book an appointment or get an instant quote.",
       actions: [
         { label: 'Get a Quote', type: 'scroll', value: 'contact' },
-        { label: 'Book Online', type: 'link', value: 'https://koalendar.com/e/meet-with-isaac-dobson' }
+        { label: 'Book Online', type: 'book', value: 'booking' }
       ]
     }
   ]);
@@ -59,6 +63,14 @@ const ChatWidget: React.FC = () => {
     } else if (action.type === 'text') {
       setInput(action.value);
       // Optional: Auto-submit here if desired
+    } else if (action.type === 'book') {
+      if (onBookClick) {
+        setIsOpen(false); // Close chat when booking starts
+        onBookClick();
+      } else {
+        // Fallback if no handler provided
+        window.open('https://koalendar.com/e/meet-with-isaac-dobson', '_blank');
+      }
     }
   };
 
@@ -125,8 +137,9 @@ const ChatWidget: React.FC = () => {
                         className="flex items-center gap-2 px-4 py-2.5 bg-yellow-400 text-black text-xs font-black rounded-xl hover:bg-yellow-300 transition-all shadow-md shadow-yellow-400/10 uppercase tracking-tight active:scale-95"
                       >
                         {action.type === 'link' ? <Calendar size={14} /> :
-                          action.label.toLowerCase().includes('quote') ? <Camera size={14} /> :
-                            <ArrowRight size={14} />}
+                          action.type === 'book' ? <Calendar size={14} /> :
+                            action.label.toLowerCase().includes('quote') ? <Camera size={14} /> :
+                              <ArrowRight size={14} />}
                         {action.label}
                       </button>
                     ))}

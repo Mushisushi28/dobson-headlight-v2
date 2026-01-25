@@ -1,7 +1,7 @@
 
 export interface ChatAction {
   label: string;
-  type: 'link' | 'scroll' | 'text';
+  type: 'link' | 'scroll' | 'text' | 'book';
   value: string;
 }
 

@@ -63,7 +63,7 @@ function App() {
       <Navbar onBookClick={handleBookClick} />
 
       <main>
-        <Hero />
+        <Hero onBookClick={handleBookClick} />
 
         {/* Simple 3-Step Process */}
         <section id="process" className="py-24 bg-white relative overflow-hidden scroll-mt-20">
@@ -241,7 +241,7 @@ function App() {
       </main>
 
       <Footer />
-      <ChatWidget />
+      <ChatWidget onBookClick={handleBookClick} />
 
       <BookingModal isOpen={isBookingModalOpen} onClose={() => setIsBookingModalOpen(false)} />
 

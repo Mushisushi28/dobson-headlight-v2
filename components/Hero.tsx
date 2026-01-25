@@ -2,7 +2,11 @@
 import React from 'react';
 import { ArrowRight, CheckCircle, MapPin, Shield, Star, Users, Award, Zap } from 'lucide-react';
 
-const Hero: React.FC = () => {
+interface HeroProps {
+  onBookClick?: () => void;
+}
+
+const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
@@ -39,14 +43,12 @@ const Hero: React.FC = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4 mb-12">
-              <a
-                href="https://koalendar.com/e/meet-with-isaac-dobson"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={onBookClick}
                 className="w-full sm:w-auto px-10 py-5 bg-yellow-400 text-black rounded-2xl font-black text-lg hover:bg-yellow-300 transition-all shadow-2xl shadow-yellow-400/20 flex items-center justify-center gap-3 group uppercase tracking-tight"
               >
                 Book Your Slot <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </a>
+              </button>
               <button
                 onClick={() => scrollTo('contact')}
                 className="w-full sm:w-auto px-10 py-5 bg-white/5 border-2 border-white/10 text-white rounded-2xl font-bold text-lg hover:bg-white/10 transition-all text-center backdrop-blur-md uppercase tracking-tight"
