@@ -27,6 +27,7 @@ const GoogleIcon = () => (
 function App() {
   const [showStickyCTA, setShowStickyCTA] = useState(false);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const [bookingSource, setBookingSource] = useState<'global' | 'chat'>('global');
 
   useEffect(() => {
     const handleScroll = () => {
