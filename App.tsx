@@ -11,6 +11,7 @@ import ChatWidget from './components/ChatWidget';
 import GalleryCarousel from './components/GalleryCarousel';
 import Resources from './components/Resources';
 import FAQ from './components/FAQ';
+import BookingModal from './components/BookingModal';
 import { REVIEWS, SERVICE_AREAS } from './constants';
 import { Star, Shield, Zap, Search, Car, Image as ImageIcon } from 'lucide-react';
 
@@ -25,6 +26,7 @@ const GoogleIcon = () => (
 
 function App() {
   const [showStickyCTA, setShowStickyCTA] = useState(false);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,9 +54,13 @@ function App() {
     }
   };
 
+  const handleBookClick = () => {
+    setIsBookingModalOpen(true);
+  };
+
   return (
     <div className="min-h-screen bg-white">
-      <Navbar />
+      <Navbar onBookClick={handleBookClick} />
 
       <main>
         <Hero />
@@ -227,7 +233,7 @@ function App() {
 
         <Resources />
 
-        <Services />
+        <Services onBookClick={handleBookClick} />
 
         <FAQ />
 
@@ -237,13 +243,15 @@ function App() {
       <Footer />
       <ChatWidget />
 
+      <BookingModal isOpen={isBookingModalOpen} onClose={() => setIsBookingModalOpen(false)} />
+
       {/* Mobile Sticky CTA */}
       <div className={`fixed bottom-0 left-0 right-0 z-50 md:hidden p-4 bg-slate-950/80 backdrop-blur-lg border-t border-white/10 transition-all duration-500 transform ${showStickyCTA ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}>
         <button
-          onClick={() => scrollTo('contact')}
+          onClick={handleBookClick}
           className="w-full py-4 bg-yellow-400 text-black font-black uppercase tracking-widest rounded-2xl shadow-2xl flex items-center justify-center gap-2 border border-white/20"
         >
-          <Zap size={20} /> Book Fast Quote
+          <Zap size={20} /> Book Appointment
         </button>
       </div>
 
@@ -253,3 +261,4 @@ function App() {
 }
 
 export default App;
+

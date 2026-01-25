@@ -3,7 +3,11 @@ import React from 'react';
 import { Check, Sparkles, ShieldCheck, Zap, AlertTriangle, TrendingDown } from 'lucide-react';
 import { PACKAGES, FLEET_PACKAGES } from '../constants';
 
-const Services: React.FC = () => {
+interface ServicesProps {
+  onBookClick: () => void;
+}
+
+const Services: React.FC<ServicesProps> = ({ onBookClick }) => {
   const [activeTab, setActiveTab] = React.useState<'residential' | 'commercial'>('residential');
 
   const displayedPackages = activeTab === 'residential' ? PACKAGES : FLEET_PACKAGES;
@@ -75,17 +79,27 @@ const Services: React.FC = () => {
                 ))}
               </div>
 
-              <a
-                href={pkg.ctaUrl || "https://koalendar.com/e/meet-with-isaac-dobson"}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`w-full py-5 rounded-2xl font-black text-center transition-all ${pkg.popular
-                  ? 'bg-yellow-400 text-black hover:bg-yellow-300 shadow-xl shadow-yellow-400/20'
-                  : 'bg-slate-950 text-white hover:bg-slate-800 shadow-lg'
-                  }`}
-              >
-                {pkg.ctaText || "Choose Package"}
-              </a>
+              {pkg.ctaUrl ? (
+                <a
+                  href={pkg.ctaUrl}
+                  className={`w-full py-5 rounded-2xl font-black text-center transition-all ${pkg.popular
+                    ? 'bg-yellow-400 text-black hover:bg-yellow-300 shadow-xl shadow-yellow-400/20'
+                    : 'bg-slate-950 text-white hover:bg-slate-800 shadow-lg'
+                    }`}
+                >
+                  {pkg.ctaText}
+                </a>
+              ) : (
+                <button
+                  onClick={onBookClick}
+                  className={`w-full py-5 rounded-2xl font-black text-center transition-all ${pkg.popular
+                    ? 'bg-yellow-400 text-black hover:bg-yellow-300 shadow-xl shadow-yellow-400/20'
+                    : 'bg-slate-950 text-white hover:bg-slate-800 shadow-lg'
+                    }`}
+                >
+                  {pkg.ctaText || "Choose Package"}
+                </button>
+              )}
             </div>
           ))}
         </div>

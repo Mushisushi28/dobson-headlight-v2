@@ -12,7 +12,11 @@ const Logo: React.FC<{ className?: string }> = ({ className = "" }) => (
   </div>
 );
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+  onBookClick: () => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ onBookClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const scrollTo = (id: string) => {
@@ -63,14 +67,12 @@ const Navbar: React.FC = () => {
             >
               Service Area
             </button>
-            <a
-              href="https://koalendar.com/e/meet-with-isaac-dobson"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={onBookClick}
               className="px-6 py-3 bg-yellow-400 text-black rounded-xl text-sm font-black hover:bg-yellow-300 transition-all shadow-xl shadow-yellow-400/20 uppercase tracking-tighter"
             >
               Book Now
-            </a>
+            </button>
           </div>
 
           <div className="md:hidden flex items-center gap-4">
@@ -108,14 +110,15 @@ const Navbar: React.FC = () => {
             >
               Service Area
             </button>
-            <a
-              href="https://koalendar.com/e/meet-with-isaac-dobson"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => {
+                onBookClick();
+                setIsMenuOpen(false);
+              }}
               className="w-full py-4 bg-yellow-400 text-black rounded-2xl text-center font-black uppercase tracking-widest shadow-xl shadow-yellow-400/10"
             >
               Book Your Slot
-            </a>
+            </button>
           </div>
         </div>
       )}
