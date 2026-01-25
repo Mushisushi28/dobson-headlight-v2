@@ -97,15 +97,17 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ onBookClick }) => {
   };
 
   useEffect(() => {
-    // Auto-open after delay
-    const timer = setTimeout(() => {
-      setIsOpen(true);
-    }, 2000);
-    return () => clearTimeout(timer);
+    // Auto-open after delay only on desktop
+    if (window.innerWidth >= 768) {
+      const timer = setTimeout(() => {
+        setIsOpen(true);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   return (
-    <div className="fixed bottom-24 left-6 md:bottom-8 md:left-8 z-[100]">
+    <div className="fixed bottom-24 right-6 md:bottom-8 md:right-8 z-[100]">
       {isOpen ? (
         <div className="bg-white w-[350px] sm:w-[400px] h-[600px] max-h-[85vh] rounded-[2rem] shadow-[0_32px_128px_-32px_rgba(0,0,0,0.5)] border border-slate-200 flex flex-col overflow-hidden animate-in slide-in-from-bottom-8 duration-500 ease-out">
           <div className="p-5 bg-slate-950 text-white flex justify-between items-center relative overflow-hidden">
