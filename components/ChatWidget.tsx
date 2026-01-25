@@ -65,7 +65,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ onBookClick }) => {
       // Optional: Auto-submit here if desired
     } else if (action.type === 'book') {
       if (onBookClick) {
-        setIsOpen(false); // Close chat when booking starts
+        // Keep chat open for seamless experience
         onBookClick();
       } else {
         // Fallback if no handler provided

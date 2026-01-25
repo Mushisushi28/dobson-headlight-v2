@@ -54,16 +54,17 @@ function App() {
     }
   };
 
-  const handleBookClick = () => {
+  const handleBookClick = (source: 'global' | 'chat' = 'global') => {
+    setBookingSource(source);
     setIsBookingModalOpen(true);
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar onBookClick={handleBookClick} />
+    <div className="min-h-screen bg-white selection:bg-yellow-400 selection:text-black font-sans">
+      <Navbar onBookClick={() => handleBookClick('global')} />
 
       <main>
-        <Hero onBookClick={handleBookClick} />
+        <Hero onBookClick={() => handleBookClick('global')} />
 
         {/* Simple 3-Step Process */}
         <section id="process" className="py-24 bg-white relative overflow-hidden scroll-mt-20">
@@ -241,9 +242,13 @@ function App() {
       </main>
 
       <Footer />
-      <ChatWidget onBookClick={handleBookClick} />
+      <ChatWidget onBookClick={() => handleBookClick('chat')} />
 
-      <BookingModal isOpen={isBookingModalOpen} onClose={() => setIsBookingModalOpen(false)} />
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+        source={bookingSource}
+      />
 
       {/* Mobile Sticky CTA */}
       <div className={`fixed bottom-0 left-0 right-0 z-50 md:hidden p-4 bg-slate-950/80 backdrop-blur-lg border-t border-white/10 transition-all duration-500 transform ${showStickyCTA ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}>
