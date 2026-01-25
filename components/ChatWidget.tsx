@@ -97,8 +97,8 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ onBookClick }) => {
   };
 
   useEffect(() => {
-    // Auto-trigger 'book' actions
-    if (messages.length > 0) {
+    // Auto-trigger 'book' actions, but ONLY for new messages (not the initial greeting)
+    if (messages.length > 1) {
       const lastMessage = messages[messages.length - 1];
       if (lastMessage.role === 'model' && lastMessage.actions) {
         const bookAction = lastMessage.actions.find(a => a.type === 'book');
