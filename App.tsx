@@ -14,7 +14,7 @@ import FAQ from './components/FAQ';
 import BookingModal from './components/BookingModal';
 import FleetModal from './components/FleetModal';
 import { REVIEWS, SERVICE_AREAS } from './constants';
-import { Star, Shield, Zap, Search, Car, Image as ImageIcon } from 'lucide-react';
+import { Star, Shield, Zap, Search, Car, Image as ImageIcon, Phone } from 'lucide-react';
 
 const GoogleIcon = () => (
   <svg viewBox="0 0 24 24" width="18" height="18" xmlns="http://www.w3.org/2000/svg" className="inline-block shrink-0">
@@ -259,13 +259,27 @@ function App() {
       />
 
       {/* Mobile Sticky CTA */}
-      <div className={`fixed bottom-0 left-0 right-0 z-50 md:hidden p-4 bg-slate-950/80 backdrop-blur-lg border-t border-white/10 transition-all duration-500 transform ${showStickyCTA ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}>
+      <div className={`
+        fixed bottom-0 left-0 right-0 z-[100] 
+        md:hidden 
+        transition-transform duration-500 
+        bg-black/95 backdrop-blur-md border-t border-white/10 
+        p-4 flex gap-3
+        ${showStickyCTA ? 'translate-y-0' : 'translate-y-full'}
+      `}>
         <button
-          onClick={handleBookClick}
-          className="w-full py-4 bg-yellow-400 text-black font-black uppercase tracking-widest rounded-2xl shadow-2xl flex items-center justify-center gap-2 border border-white/20"
+          onClick={() => handleBookClick('global')}
+          className="flex-grow bg-yellow-400 text-black py-4 rounded-xl font-black uppercase tracking-widest active:scale-95 transition-all shadow-xl shadow-yellow-400/10"
         >
-          <Zap size={20} /> Book Appointment
+          Book Now
         </button>
+        <a
+          href="tel:587-402-4794"
+          className="bg-white/10 border border-white/20 text-white px-6 flex items-center justify-center rounded-xl active:scale-95 transition-all hover:bg-white/20"
+          aria-label="Call Now"
+        >
+          <Phone className="w-6 h-6" />
+        </a>
       </div>
 
       <Analytics />
