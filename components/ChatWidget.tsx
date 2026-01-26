@@ -117,15 +117,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ onBookClick }) => {
     }
   }, [messages]);
 
-  useEffect(() => {
-    // Auto-open after delay only on desktop
-    if (window.innerWidth >= 768) {
-      const timer = setTimeout(() => {
-        setIsOpen(true);
-      }, 2000);
-      return () => clearTimeout(timer);
-    }
-  }, []);
+  // Auto-open removed to ensure button visibility by default
 
   return (
     <>
