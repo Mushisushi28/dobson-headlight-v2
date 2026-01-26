@@ -14,6 +14,7 @@ import FAQ from './components/FAQ';
 import BookingModal from './components/BookingModal';
 import FleetModal from './components/FleetModal';
 import { REVIEWS, SERVICE_AREAS } from './constants';
+import PromoBar from './components/PromoBar';
 import { Star, Shield, Zap, Search, Car, Image as ImageIcon, Phone } from 'lucide-react';
 
 const GoogleIcon = () => (
@@ -64,6 +65,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white selection:bg-yellow-400 selection:text-black font-sans">
+      <PromoBar />
       <Navbar onBookClick={() => handleBookClick('global')} />
 
       <main>

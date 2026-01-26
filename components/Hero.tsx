@@ -20,7 +20,7 @@ const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
   };
 
   return (
-    <div className="relative pt-32 pb-12 lg:pt-48 lg:pb-20 overflow-hidden bg-slate-950">
+    <div className="relative pt-40 pb-12 lg:pt-56 lg:pb-20 overflow-hidden bg-slate-950">
       <div className="absolute top-0 right-0 w-1/2 h-full -z-10 bg-slate-900 skew-x-[-12deg] translate-x-20 hidden lg:block opacity-50"></div>
 
       {/* Glow Effect */}
