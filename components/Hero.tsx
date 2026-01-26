@@ -30,7 +30,7 @@ const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center text-white mb-20">
           <div className="lg:col-span-6 text-left">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 text-yellow-400 text-xs font-black uppercase tracking-widest mb-8 border border-white/10 backdrop-blur-md">
-              <MapPin className="w-3.5 h-3.5" /> Service: Southern Alberta
+              <MapPin className="w-3.5 h-3.5" /> Service: Lethbridge & Southern Alberta
             </div>
 
             <h1 className="text-5xl sm:text-7xl font-black text-white tracking-tight mb-8 leading-[1.05]">
@@ -39,7 +39,7 @@ const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
             </h1>
 
             <p className="text-xl text-slate-400 mb-10 max-w-xl leading-relaxed font-medium">
-              Southern Alberta's #1 rated restoration. We bring factory clarity back to your headlights for a fraction of the cost of new ones. <span className="text-yellow-400 font-black">Starting at $99.</span>
+              Lethbridge's #1 rated restoration. We bring factory clarity back to your headlights for a fraction of the cost of new ones. <span className="text-yellow-400 font-black">Starting at $99.</span>
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4 mb-12">

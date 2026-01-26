@@ -12,6 +12,7 @@ import GalleryCarousel from './components/GalleryCarousel';
 import Resources from './components/Resources';
 import FAQ from './components/FAQ';
 import BookingModal from './components/BookingModal';
+import FleetModal from './components/FleetModal';
 import { REVIEWS, SERVICE_AREAS } from './constants';
 import { Star, Shield, Zap, Search, Car, Image as ImageIcon } from 'lucide-react';
 
@@ -27,6 +28,7 @@ const GoogleIcon = () => (
 function App() {
   const [showStickyCTA, setShowStickyCTA] = useState(false);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const [isFleetModalOpen, setIsFleetModalOpen] = useState(false);
   const [bookingSource, setBookingSource] = useState<'global' | 'chat'>('global');
 
   useEffect(() => {
@@ -235,7 +237,7 @@ function App() {
 
         <Resources />
 
-        <Services onBookClick={handleBookClick} />
+        <Services onBookClick={handleBookClick} onFleetClick={() => setIsFleetModalOpen(true)} />
 
         <FAQ />
 
@@ -249,6 +251,11 @@ function App() {
         isOpen={isBookingModalOpen}
         onClose={() => setIsBookingModalOpen(false)}
         source={bookingSource}
+      />
+
+      <FleetModal
+        isOpen={isFleetModalOpen}
+        onClose={() => setIsFleetModalOpen(false)}
       />
 
       {/* Mobile Sticky CTA */}

@@ -5,9 +5,10 @@ import { PACKAGES, FLEET_PACKAGES } from '../constants';
 
 interface ServicesProps {
   onBookClick: () => void;
+  onFleetClick: () => void;
 }
 
-const Services: React.FC<ServicesProps> = ({ onBookClick }) => {
+const Services: React.FC<ServicesProps> = ({ onBookClick, onFleetClick }) => {
   const [activeTab, setActiveTab] = React.useState<'residential' | 'commercial'>('residential');
 
   const displayedPackages = activeTab === 'residential' ? PACKAGES : FLEET_PACKAGES;
@@ -91,7 +92,7 @@ const Services: React.FC<ServicesProps> = ({ onBookClick }) => {
                 </a>
               ) : (
                 <button
-                  onClick={onBookClick}
+                  onClick={activeTab === 'commercial' ? onFleetClick : onBookClick}
                   className={`w-full py-5 rounded-2xl font-black text-center transition-all ${pkg.popular
                     ? 'bg-yellow-400 text-black hover:bg-yellow-300 shadow-xl shadow-yellow-400/20'
                     : 'bg-slate-950 text-white hover:bg-slate-800 shadow-lg'
@@ -100,6 +101,11 @@ const Services: React.FC<ServicesProps> = ({ onBookClick }) => {
                   {pkg.ctaText || "Choose Package"}
                 </button>
               )}
+
+              {/* Trust Badge */}
+              <div className="mt-6 flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-400">
+                <ShieldCheck size={14} className="text-yellow-500" /> Satisfaction Guarantee
+              </div>
             </div>
           ))}
         </div>

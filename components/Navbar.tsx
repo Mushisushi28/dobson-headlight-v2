@@ -5,7 +5,7 @@ import { Menu, Phone, X } from 'lucide-react';
 const Logo: React.FC<{ className?: string }> = ({ className = "" }) => (
   <div className={`flex items-center h-full ${className}`}>
     <img
-      src="https://i.ibb.co/KxFsd4bP/colored-logo-1.png"
+      src="/dobson-logo.png"
       alt="Dobson Headlight Restoration Logo"
       className="h-40 w-auto object-contain drop-shadow-2xl"
     />
@@ -18,6 +18,15 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ onBookClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
@@ -37,7 +46,10 @@ const Navbar: React.FC<NavbarProps> = ({ onBookClick }) => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-950/95 backdrop-blur-md border-b border-white/10 shadow-2xl">
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+      ? 'bg-slate-950/95 backdrop-blur-md border-b border-white/10 shadow-2xl py-0'
+      : 'bg-transparent border-b border-transparent py-2'
+      }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-24">
           <a
