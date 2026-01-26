@@ -132,7 +132,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ onBookClick }) => {
       {/* Chat Window */}
       <div
         className={`
-          fixed z-[100] transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]
+          fixed z-[9999] transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]
           bottom-0 md:bottom-8
           left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto md:right-8
           w-[95vw] max-w-[400px] h-[600px] max-h-[85vh]
@@ -237,7 +237,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ onBookClick }) => {
           flex items-center justify-center 
           group relative border-4 border-slate-950
           transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]
-          fixed bottom-6 right-6 md:right-8 md:bottom-8 z-[90]
+          fixed bottom-6 right-6 md:right-8 md:bottom-8 z-[9999]
           ${isOpen
             ? 'opacity-0 scale-50 pointer-events-none rotate-90'
             : 'opacity-100 scale-100 pointer-events-auto rotate-0 hover:scale-110 active:scale-95 hover:bg-yellow-300 animate-[pulse_3s_ease-in-out_infinite]'
