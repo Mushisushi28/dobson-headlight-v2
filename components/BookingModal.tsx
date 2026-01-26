@@ -14,13 +14,8 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, source = '
     const isChatSideMode = source === 'chat';
 
     return (
-        <div className={`fixed inset-0 z-[60] flex items-center justify-center p-4 ${isChatSideMode ? 'md:bg-transparent md:pointer-events-none' : ''}`}>
-            {/* Backdrop - full screen for global, but transparent/clickable for specific areas in chat mode if needed (or just lighter) */}
-            {/* Actually, user wants "seamless". If side-by-side, maybe no dark backdrop on desktop? Or just a subtle one? 
-                Let's keep the backdrop but maybe confine it or make it transparent for chat mode on desktop so you can still see site?
-                User said "open ... to the left of itself". 
-                Let's behave like a popover on desktop if chat-sourced.
-            */}
+        <div className={`fixed inset-0 z-[110] flex items-center justify-center p-4 ${isChatSideMode ? 'md:bg-transparent md:pointer-events-none' : ''}`}>
+            {/* Backdrop */}
             <div
                 className={`absolute inset-0 bg-slate-950/80 backdrop-blur-sm transition-all duration-300 ${isChatSideMode ? 'md:bg-transparent md:backdrop-blur-none md:pointer-events-none' : ''}`}
                 onClick={!isChatSideMode ? onClose : undefined}
@@ -31,7 +26,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, source = '
                 className={`relative w-full bg-white rounded-3xl overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-300 pointer-events-auto
                 ${isChatSideMode
                         ? 'md:fixed md:bottom-8 md:right-[460px] md:w-[700px] md:h-[800px] md:max-h-[90vh] md:origin-bottom-right'
-                        : 'max-w-4xl h-[85vh]'}
+                        : 'max-w-4xl h-[90dvh] md:h-[85vh]'}
                 `}
             >
                 {/* Close Button */}
