@@ -117,7 +117,15 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ onBookClick }) => {
     }
   }, [messages]);
 
-  // Auto-open removed to ensure button visibility by default
+  useEffect(() => {
+    // Auto-open after delay only on desktop
+    if (window.innerWidth >= 768) {
+      const timer = setTimeout(() => {
+        setIsOpen(true);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   return (
     <>
@@ -229,7 +237,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ onBookClick }) => {
           flex items-center justify-center 
           group relative border-4 border-slate-950
           transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]
-          fixed bottom-6 right-6 md:right-8 md:bottom-8 z-[9999]
+          fixed bottom-24 right-6 md:right-8 md:bottom-8 z-[9999]
           ${isOpen
             ? 'opacity-0 scale-50 pointer-events-none rotate-90'
             : 'opacity-100 scale-100 pointer-events-auto rotate-0 hover:scale-110 active:scale-95 hover:bg-yellow-300 animate-[pulse_3s_ease-in-out_infinite]'
