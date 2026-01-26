@@ -128,102 +128,104 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ onBookClick }) => {
   }, []);
 
   return (
-    <div className="fixed bottom-24 left-0 right-0 md:left-auto md:right-8 md:bottom-8 z-[100] flex items-end justify-center md:justify-end pointer-events-none px-4 md:px-0">
+    <>
       {/* Chat Window */}
       <div
         className={`
-          bg-white w-full max-w-[400px] h-[600px] max-h-[85vh] rounded-[2rem] 
-          shadow-[0_32px_128px_-32px_rgba(0,0,0,0.5)] border border-slate-200 
-          flex flex-col overflow-hidden origin-bottom md:origin-bottom-right
-          transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]
-          absolute bottom-0 z-20
+          fixed z-[100] transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]
+          bottom-0 md:bottom-8
+          left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto md:right-8
+          w-[95vw] max-w-[400px] h-[600px] max-h-[85vh]
+          origin-bottom md:origin-bottom-right
           ${isOpen
             ? 'opacity-100 scale-100 translate-y-0 pointer-events-auto'
             : 'opacity-0 scale-90 translate-y-10 pointer-events-none'
           }
         `}
       >
-        <div className="p-5 bg-slate-950 text-white flex justify-between items-center relative overflow-hidden shrink-0">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-400/10 rounded-full blur-2xl translate-x-10 -translate-y-10"></div>
-          <div className="flex items-center gap-3 relative z-10">
-            <div className="w-12 h-12 rounded-2xl bg-yellow-400 flex items-center justify-center text-black shadow-lg shadow-yellow-400/20">
-              <Bot className="w-7 h-7" />
-            </div>
-            <div>
-              <div className="font-black text-base uppercase tracking-tight">DobsonAI</div>
-              <div className="text-[10px] text-yellow-400 flex items-center gap-1.5 font-black uppercase tracking-widest">
-                <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse"></span> Headlight Specialist
+        <div className="w-full h-full bg-white rounded-[2rem] shadow-[0_32px_128px_-32px_rgba(0,0,0,0.5)] border border-slate-200 flex flex-col overflow-hidden">
+          <div className="p-5 bg-slate-950 text-white flex justify-between items-center relative overflow-hidden shrink-0">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-400/10 rounded-full blur-2xl translate-x-10 -translate-y-10"></div>
+            <div className="flex items-center gap-3 relative z-10">
+              <div className="w-12 h-12 rounded-2xl bg-yellow-400 flex items-center justify-center text-black shadow-lg shadow-yellow-400/20">
+                <Bot className="w-7 h-7" />
               </div>
-            </div>
-          </div>
-          <button onClick={() => setIsOpen(false)} className="p-2 hover:bg-white/10 rounded-xl transition-colors relative z-10">
-            <X className="w-5 h-5 text-white" />
-          </button>
-        </div>
-
-        <div ref={scrollRef} className="flex-grow p-4 overflow-y-auto space-y-6 bg-slate-50/50">
-          {messages.map((m, i) => (
-            <div key={i} className={`flex flex-col ${m.role === 'user' ? 'items-end' : 'items-start'}`}>
-              <div className={`max-w-[85%] p-4 rounded-[1.5rem] text-sm font-semibold leading-relaxed shadow-sm whitespace-pre-wrap ${m.role === 'user'
-                ? 'bg-slate-950 text-white rounded-tr-none'
-                : 'bg-white text-slate-800 border border-slate-200/60 rounded-tl-none'
-                }`}>
-                {m.text.split('**').map((part, i) =>
-                  i % 2 === 1 ? <strong key={i} className="text-yellow-500 font-black">{part}</strong> : part
-                )}
-              </div>
-
-              {m.actions && m.actions.length > 0 && (
-                <div className="flex flex-wrap gap-2 mt-3 max-w-[90%]">
-                  {m.actions.map((action, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => handleAction(action)}
-                      className="flex items-center gap-2 px-4 py-2.5 bg-yellow-400 text-black text-xs font-black rounded-xl hover:bg-yellow-300 transition-all shadow-md shadow-yellow-400/10 uppercase tracking-tight active:scale-95"
-                    >
-                      {action.type === 'link' ? <Calendar size={14} /> :
-                        action.type === 'book' ? <Calendar size={14} /> :
-                          action.label.toLowerCase().includes('quote') ? <Camera size={14} /> :
-                            <ArrowRight size={14} />}
-                      {action.label}
-                    </button>
-                  ))}
+              <div>
+                <div className="font-black text-base uppercase tracking-tight">DobsonAI</div>
+                <div className="text-[10px] text-yellow-400 flex items-center gap-1.5 font-black uppercase tracking-widest">
+                  <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse"></span> Headlight Specialist
                 </div>
-              )}
-            </div>
-          ))}
-          {isLoading && (
-            <div className="flex justify-start">
-              <div className="bg-white p-4 rounded-2xl rounded-tl-none border border-slate-200/60 flex gap-1.5 items-center">
-                <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-bounce"></div>
-                <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-bounce [animation-delay:0.2s]"></div>
-                <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-bounce [animation-delay:0.4s]"></div>
               </div>
             </div>
-          )}
-        </div>
-
-        <div className="p-4 bg-white border-t border-slate-100 shrink-0">
-          <div className="flex gap-2">
-            <input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-              placeholder="Ask a question..."
-              className="flex-grow p-4 bg-slate-100 border-none rounded-2xl text-sm font-bold placeholder:text-slate-400 focus:ring-2 focus:ring-yellow-400 transition-all outline-none"
-            />
-            <button
-              onClick={() => handleSend()}
-              disabled={isLoading}
-              className="w-12 h-12 flex items-center justify-center bg-slate-950 text-white rounded-2xl hover:bg-black transition-colors disabled:opacity-50 shadow-xl shadow-slate-900/10"
-            >
-              <Send className="w-5 h-5" />
+            <button onClick={() => setIsOpen(false)} className="p-2 hover:bg-white/10 rounded-xl transition-colors relative z-10">
+              <X className="w-5 h-5 text-white" />
             </button>
           </div>
-          <p className="text-[9px] text-center text-slate-400 mt-3 font-black uppercase tracking-[0.2em]">
-            Instant Local Response
-          </p>
+
+          <div ref={scrollRef} className="flex-grow p-4 overflow-y-auto space-y-6 bg-slate-50/50">
+            {messages.map((m, i) => (
+              <div key={i} className={`flex flex-col ${m.role === 'user' ? 'items-end' : 'items-start'}`}>
+                <div className={`max-w-[85%] p-4 rounded-[1.5rem] text-sm font-semibold leading-relaxed shadow-sm whitespace-pre-wrap ${m.role === 'user'
+                  ? 'bg-slate-950 text-white rounded-tr-none'
+                  : 'bg-white text-slate-800 border border-slate-200/60 rounded-tl-none'
+                  }`}>
+                  {m.text.split('**').map((part, i) =>
+                    i % 2 === 1 ? <strong key={i} className="text-yellow-500 font-black">{part}</strong> : part
+                  )}
+                </div>
+
+                {m.actions && m.actions.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mt-3 max-w-[90%]">
+                    {m.actions.map((action, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => handleAction(action)}
+                        className="flex items-center gap-2 px-4 py-2.5 bg-yellow-400 text-black text-xs font-black rounded-xl hover:bg-yellow-300 transition-all shadow-md shadow-yellow-400/10 uppercase tracking-tight active:scale-95"
+                      >
+                        {action.type === 'link' ? <Calendar size={14} /> :
+                          action.type === 'book' ? <Calendar size={14} /> :
+                            action.label.toLowerCase().includes('quote') ? <Camera size={14} /> :
+                              <ArrowRight size={14} />}
+                        {action.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+            {isLoading && (
+              <div className="flex justify-start">
+                <div className="bg-white p-4 rounded-2xl rounded-tl-none border border-slate-200/60 flex gap-1.5 items-center">
+                  <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-bounce"></div>
+                  <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-bounce [animation-delay:0.2s]"></div>
+                  <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-bounce [animation-delay:0.4s]"></div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className="p-4 bg-white border-t border-slate-100 shrink-0">
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+                placeholder="Ask a question..."
+                className="flex-grow p-4 bg-slate-100 border-none rounded-2xl text-sm font-bold placeholder:text-slate-400 focus:ring-2 focus:ring-yellow-400 transition-all outline-none"
+              />
+              <button
+                onClick={() => handleSend()}
+                disabled={isLoading}
+                className="w-12 h-12 flex items-center justify-center bg-slate-950 text-white rounded-2xl hover:bg-black transition-colors disabled:opacity-50 shadow-xl shadow-slate-900/10"
+              >
+                <Send className="w-5 h-5" />
+              </button>
+            </div>
+            <p className="text-[9px] text-center text-slate-400 mt-3 font-black uppercase tracking-[0.2em]">
+              Instant Local Response
+            </p>
+          </div>
         </div>
       </div>
 
@@ -235,7 +237,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ onBookClick }) => {
           flex items-center justify-center 
           group relative border-4 border-slate-950
           transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]
-          absolute bottom-0 right-4 md:right-0 z-10
+          fixed bottom-6 right-6 md:right-8 md:bottom-8 z-[90]
           ${isOpen
             ? 'opacity-0 scale-50 pointer-events-none rotate-90'
             : 'opacity-100 scale-100 pointer-events-auto rotate-0 hover:scale-110 active:scale-95 hover:bg-yellow-300 animate-[pulse_3s_ease-in-out_infinite]'
@@ -250,8 +252,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ onBookClick }) => {
           Need a Quote?
         </span>
       </button>
-
-    </div>
+    </>
   );
 };
 
