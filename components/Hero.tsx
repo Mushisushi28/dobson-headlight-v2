@@ -34,7 +34,7 @@ const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
             </div>
 
             <h1 className="text-5xl sm:text-7xl font-black text-white tracking-tight mb-8 leading-[1.05]">
-              Don't Replace.<br />
+              Headlight Restoration Lethbridge —<br />
               <span className="text-yellow-400">Restore & Save.</span>
             </h1>
 
