@@ -55,9 +55,11 @@ Key Information:
 - Guarantee: No results, no pay.
 `;
 
+const apiKey = process.env.ZAI_API_KEY || process.env.NEXT_PUBLIC_ZAI_API_KEY || '';
+
 const client = new OpenAI({
-  apiKey: process.env.NEXT_PUBLIC_ZAI_API_KEY || '',
-  baseURL: 'https://api.z.ai/api/paas/v4',
+  apiKey,
+  baseURL: 'https://api.z.ai/api/coding/paas/v4',
 });
 
 export async function POST(req: NextRequest) {
@@ -77,10 +79,14 @@ export async function POST(req: NextRequest) {
     const text = response.choices[0]?.message?.content || "I'm having trouble responding. Please call or text us at 587-402-4794!";
     return NextResponse.json({ text });
   } catch (error: any) {
+    const keyFound = process.env.ZAI_API_KEY ? 'ZAI_API_KEY' : (process.env.NEXT_PUBLIC_ZAI_API_KEY ? 'NEXT_PUBLIC_ZAI_API_KEY' : 'NONE');
+    const keyPreview = apiKey ? apiKey.slice(0, 8) + '...' : 'empty';
     const errDetail = {
       status: error?.status,
       message: error?.message,
       body: error?.error || error?.body || {},
+      keyFound,
+      keyPreview,
     };
     return NextResponse.json({ text: `DEBUG: ${JSON.stringify(errDetail)}` }, { status: 200 });
   }
