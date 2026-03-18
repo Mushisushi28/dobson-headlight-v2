@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
     const { messages } = await req.json();
 
     const response = await client.chat.completions.create({
-      model: 'glm-4.7-flash',
+      model: 'glm-4.6v',
       messages: [
         { role: 'system', content: SYSTEM_INSTRUCTION },
         ...messages,
