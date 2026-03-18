@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 import OpenAI from "openai";
 
 const SYSTEM_INSTRUCTION = `
