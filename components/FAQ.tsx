@@ -45,12 +45,27 @@ const FAQ: React.FC = () => {
 
         <div className="mt-12 text-center">
             <p className="text-slate-400 text-sm font-bold mb-6">Still have a question? Text Isaac directly for a fast answer.</p>
-            <a 
-              href="tel:587-402-4794" 
+            <a
+              href="tel:587-402-4794"
               className="px-8 py-4 bg-slate-950 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-black transition-all shadow-xl"
             >
               587-402-4794
             </a>
+        </div>
+
+        {/* SEO keyword targeting block */}
+        <div className="mt-16 p-8 bg-slate-50 rounded-[2rem] border border-slate-100">
+          <p className="text-sm text-slate-500 font-medium leading-relaxed text-center">
+            If you're searching for <strong className="text-slate-700">headlight restoration Lethbridge</strong>, <strong className="text-slate-700">headlight polishing Lethbridge</strong>, <strong className="text-slate-700">foggy headlight repair near me</strong>, <strong className="text-slate-700">mobile headlight restoration Southern Alberta</strong>, <strong className="text-slate-700">headlight restoration Taber</strong>, <strong className="text-slate-700">headlight restoration Cardston</strong>, <strong className="text-slate-700">headlight restoration Raymond</strong>, <strong className="text-slate-700">headlight restoration Coaldale</strong>, <strong className="text-slate-700">headlight restoration Fort Macleod</strong>, <strong className="text-slate-700">ceramic headlight coating Alberta</strong>, or <strong className="text-slate-700">yellowed headlight fix Lethbridge</strong> — you've found the right place. Dobson Headlight Restoration is Southern Alberta's #1 rated mobile headlight specialist with 47+ five-star reviews.
+          </p>
+          <div className="text-center mt-6">
+            <a
+              href="/blog/headlight-restoration-lethbridge-guide"
+              className="text-yellow-600 font-black text-sm uppercase tracking-widest hover:underline"
+            >
+              Read our complete Lethbridge headlight restoration guide →
+            </a>
+          </div>
         </div>
       </div>
     </section>

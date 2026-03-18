@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.dobsonheadlightrestoration.com/</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <image:image>
       <image:loc>https://i.ibb.co/QFhDNcgn/20260106-175851-1.jpg</image:loc>
       <image:title>Headlight Restoration After — Dobson Headlight Restoration Lethbridge</image:title>
@@ -20,5 +20,9 @@
       <image:loc>https://www.dobsonheadlightrestoration.com/dobson-logo.png</image:loc>
       <image:title>Dobson Headlight Restoration Logo — Lethbridge Alberta</image:title>
     </image:image>
+  </url>
+  <url>
+    <loc>https://www.dobsonheadlightrestoration.com/blog/headlight-restoration-lethbridge-guide</loc>
+    <lastmod>2026-03-18</lastmod>
   </url>
 </urlset>

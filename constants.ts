@@ -92,24 +92,52 @@ export const FLEET_PACKAGES: ServicePackage[] = [
 
 export const FAQS = [
   {
+    question: "How much does headlight restoration cost in Lethbridge?",
+    answer: "Headlight restoration in Lethbridge starts at $99 CAD for our Standard Package, which includes multi-step oxidation removal, machine polishing, and an industrial UV top coat with 1–2 year durability. Our Premium Package with Ceramic Pro 9H coating starts at $169 CAD and provides 5+ year protection. New light protection for factory-new headlights is available by custom quote. All work comes with a re-do warranty — no results, no pay."
+  },
+  {
+    question: "Is headlight restoration worth it compared to replacement?",
+    answer: "Absolutely. Headlight restoration at Dobson costs $99–$169 compared to $200–$1,500+ per assembly for dealer replacement. Yellowed or foggy headlights can reduce your light output by up to 80%, which is both a safety issue and a vehicle inspection risk in Alberta. We restore your lenses to factory clarity in 60–90 minutes, and our results are backed by a re-do warranty. For the vast majority of vehicles, restoration is the smart choice."
+  },
+  {
+    question: "Can cloudy headlights fail a vehicle inspection in Alberta?",
+    answer: "Yes. Under Alberta's Vehicle Inspection Program, headlights must meet minimum brightness and beam-alignment standards. Severely yellowed or foggy headlights reduce light output and can cause an inspection failure. Having your headlights professionally restored before an inspection is a straightforward, affordable fix — and our guarantee means you pay nothing if we don't get results."
+  },
+  {
+    question: "Do you offer mobile headlight restoration in Lethbridge?",
+    answer: "Yes — we come to you. Dobson Headlight Restoration offers mobile service across Lethbridge and all of Southern Alberta including Taber, Cardston, Raymond, Coaldale, Fort Macleod, and Magrath. During winter months, we work from our heated shop. Your presence is not required — we handle everything and send you a digital payment link when done."
+  },
+  {
+    question: "How long does headlight restoration last?",
+    answer: "Our Standard restoration lasts 1–2 years. Our Premium restoration with Ceramic Pro 9H coating lasts 5+ years. Both packages are protected by our re-do warranty — if oxidation returns early, we come back and fix it for free. Results depend on sun exposure, weather, and storage, but our ceramic coating is the most durable option available for Southern Alberta's harsh UV and temperature conditions."
+  },
+  {
+    question: "What is the difference between standard and ceramic headlight restoration?",
+    answer: "The Standard Package ($99+) removes oxidation and applies an industrial UV top coat for 1–2 years of protection. The Premium Package ($169+) does everything in the Standard plus applies Ceramic Pro 9H — an industrial-grade ceramic coating that bonds to the lens and provides 5+ years of UV and debris protection. The Premium also includes fog light treatment. If you want maximum longevity, ceramic is the clear choice."
+  },
+  {
+    question: "What areas in Southern Alberta do you serve?",
+    answer: "We serve Lethbridge, Taber, Cardston, Raymond, Coaldale, Coalhurst, Fort Macleod, Magrath, and surrounding Southern Alberta communities. If you're not sure whether we reach your area, call or text us at 587-402-4794 and we'll confirm availability. Mobile service is available year-round (weather permitting in winter)."
+  },
+  {
+    question: "What causes headlights to yellow and become foggy?",
+    answer: "Headlight lenses are made from polycarbonate plastic, which degrades under UV radiation from the sun. Over time, the factory UV coating wears off, causing oxidation — the yellowing, hazing, or cloudy appearance you see. Alberta's intense summer sun and extreme temperature swings accelerate this process. Road debris and chemical exposure also contribute. Once oxidation starts, it progressively worsens and cannot be reversed by cleaning alone — professional restoration is required."
+  },
+  {
+    question: "Do you restore headlights in winter in Alberta?",
+    answer: "Yes. We operate year-round from our heated shop during the winter months. Cold temperatures actually make the polishing process more controlled and consistent. We do not offer outdoor mobile service in freezing conditions, but shop drop-off is always available. Book online or text 587-402-4794 to check current availability."
+  },
+  {
     question: "What are your business hours?",
-    answer: "We are available for inquiries from 8:00 AM to 9:00 PM, Monday through Saturday. We can often accommodate early morning or late evening bookings to fit your work schedule."
+    answer: "We are available Monday through Saturday, 8:00 AM to 9:00 PM. Early morning and late evening appointments are available on request to fit around your work schedule. Text 587-402-4794 for the fastest response."
   },
   {
     question: "Do you offer a warranty?",
-    answer: "Yes! We offer a re-do warranty. If your headlights show signs of oxidation or fading within the protection period of your chosen package, we will come back and restore them again at no additional cost to you."
-  },
-  {
-    question: "How long does the restoration take?",
-    answer: "Most restorations take between 60 to 90 minutes. We have a comfortable waiting area, or you can drop off your vehicle and we'll text you when it's done."
-  },
-  {
-    question: "Do I need to be present during the service?",
-    answer: "Not necessarily! As long as we have access to your vehicle and a power outlet nearby, we can complete the restoration and send you a link for easy digital payment."
+    answer: "Yes — we offer a re-do warranty on all packages. If your headlights show oxidation or fading within the protection period of your chosen package (1–2 years Standard, 5+ years Premium), we come back and restore them again at no charge. We also guarantee results upfront — if we can't restore your headlights to a satisfactory level, you don't pay."
   },
   {
     question: "Will the process damage my car's paint?",
-    answer: "Absolutely not. We use professional-grade automotive masking tape to protect all surrounding paint and trim before we begin the sanding and polishing process."
+    answer: "Not at all. We use professional-grade automotive masking tape to fully protect all surrounding paint, trim, and rubber seals before we begin. Our process is safe for all vehicle types including new cars, luxury vehicles, and trucks. Over 47 five-star Google reviews confirm the quality of our work."
   }
 ];
 
