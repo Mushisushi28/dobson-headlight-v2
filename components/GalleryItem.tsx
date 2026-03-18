@@ -19,16 +19,22 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ before, after, label, descrip
       onTouchStart={() => setIsHovered(!isHovered)}
     >
       {/* After Image (Primary) */}
-      <img 
-        src={after} 
-        alt={`${label} After`} 
+      <img
+        src={after}
+        alt={`${label} After — Headlight Restoration Lethbridge AB`}
+        loading="lazy"
+        width={400}
+        height={500}
         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${isHovered ? 'opacity-0' : 'opacity-100'}`}
       />
-      
+
       {/* Before Image (Revealed on Hover) */}
-      <img 
-        src={before} 
-        alt={`${label} Before`} 
+      <img
+        src={before}
+        alt={`${label} Before — Yellowed Foggy Headlights Southern Alberta`}
+        loading="lazy"
+        width={400}
+        height={500}
         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
       />
 
