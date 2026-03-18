@@ -77,12 +77,11 @@ export async function POST(req: NextRequest) {
     const text = response.choices[0]?.message?.content || "I'm having trouble responding. Please call or text us at 587-402-4794!";
     return NextResponse.json({ text });
   } catch (error: any) {
-    console.error('Z.ai API error status:', error?.status);
-    console.error('Z.ai API error message:', error?.message);
-    console.error('Z.ai API error body:', JSON.stringify(error?.error || error?.body || {}));
-    return NextResponse.json(
-      { text: "I'm experiencing technical difficulties. Please call or text us at 587-402-4794 for a fast quote!" },
-      { status: 200 }
-    );
+    const errDetail = {
+      status: error?.status,
+      message: error?.message,
+      body: error?.error || error?.body || {},
+    };
+    return NextResponse.json({ text: `DEBUG: ${JSON.stringify(errDetail)}` }, { status: 200 });
   }
 }
