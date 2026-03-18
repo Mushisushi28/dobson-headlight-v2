@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import OpenAI from 'openai';
 
 const SYSTEM_INSTRUCTION = `
 You are DobsonAI, the friendly and professional assistant for Dobson Headlight Restoration in Southern Alberta.
@@ -55,39 +54,40 @@ Key Information:
 - Guarantee: No results, no pay.
 `;
 
-const apiKey = process.env.ZAI_API_KEY || process.env.NEXT_PUBLIC_ZAI_API_KEY || '';
-
-const client = new OpenAI({
-  apiKey,
-  baseURL: 'https://api.z.ai/api/coding/paas/v4',
-});
-
 export async function POST(req: NextRequest) {
+  const apiKey = process.env.ZAI_API_KEY || process.env.NEXT_PUBLIC_ZAI_API_KEY || '';
+
   try {
     const { messages } = await req.json();
 
-    const response = await client.chat.completions.create({
-      model: 'glm-4.6v',
-      messages: [
-        { role: 'system', content: SYSTEM_INSTRUCTION },
-        ...messages,
-      ],
-      temperature: 0.7,
-      max_tokens: 300,
+    const response = await fetch('https://api.z.ai/api/coding/paas/v4/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        model: 'glm-4.6v',
+        messages: [
+          { role: 'system', content: SYSTEM_INSTRUCTION },
+          ...messages,
+        ],
+        temperature: 0.7,
+        max_tokens: 300,
+      }),
     });
 
-    const text = response.choices[0]?.message?.content || "I'm having trouble responding. Please call or text us at 587-402-4794!";
+    const data = await response.json();
+
+    if (!response.ok) {
+      // Debug: show env keys present and error
+      const envKeys = Object.keys(process.env).filter(k => k.includes('ZAI') || k.includes('API'));
+      throw new Error(JSON.stringify({ httpStatus: response.status, data, envKeys, keyPreview: apiKey ? apiKey.slice(0, 8) + '...' : 'empty' }));
+    }
+
+    const text = data.choices?.[0]?.message?.content || "I'm having trouble responding. Please call or text us at 587-402-4794!";
     return NextResponse.json({ text });
   } catch (error: any) {
-    const keyFound = process.env.ZAI_API_KEY ? 'ZAI_API_KEY' : (process.env.NEXT_PUBLIC_ZAI_API_KEY ? 'NEXT_PUBLIC_ZAI_API_KEY' : 'NONE');
-    const keyPreview = apiKey ? apiKey.slice(0, 8) + '...' : 'empty';
-    const errDetail = {
-      status: error?.status,
-      message: error?.message,
-      body: error?.error || error?.body || {},
-      keyFound,
-      keyPreview,
-    };
-    return NextResponse.json({ text: `DEBUG: ${JSON.stringify(errDetail)}` }, { status: 200 });
+    return NextResponse.json({ text: `DEBUG: ${error?.message}` }, { status: 200 });
   }
 }
