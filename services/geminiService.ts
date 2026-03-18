@@ -1,4 +1,3 @@
-/// <reference types="vite/client" />
 import OpenAI from "openai";
 
 const SYSTEM_INSTRUCTION = `
@@ -56,7 +55,7 @@ Key Information:
 `;
 
 const client = new OpenAI({
-  apiKey: import.meta.env.VITE_ZAI_API_KEY || '',
+  apiKey: process.env.NEXT_PUBLIC_ZAI_API_KEY || '',
   baseURL: 'https://api.z.ai/api/coding/paas/v4',
   dangerouslyAllowBrowser: true,
 });
