@@ -4,8 +4,10 @@ import React, { useState, useEffect } from 'react';
 import { Analytics } from "@vercel/analytics/react"
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import StatsSection from './components/StatsSection';
 import ComparisonSlider from './components/ComparisonSlider';
 import Services from './components/Services';
+import SocialProof from './components/SocialProof';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 import ChatWidget from './components/ChatWidget';
@@ -14,9 +16,9 @@ import Resources from './components/Resources';
 import FAQ from './components/FAQ';
 import BookingModal from './components/BookingModal';
 import FleetModal from './components/FleetModal';
-import { REVIEWS, SERVICE_AREAS } from './constants';
+import { SERVICE_AREAS } from './constants';
 import PromoBar from './components/PromoBar';
-import { Star, Shield, Zap, Search, Car, Image as ImageIcon, Phone } from 'lucide-react';
+import { Shield, Zap, Search, Car, Image as ImageIcon, Phone } from 'lucide-react';
 
 const GoogleIcon = () => (
   <svg viewBox="0 0 24 24" width="18" height="18" xmlns="http://www.w3.org/2000/svg" className="inline-block shrink-0">
@@ -65,19 +67,20 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white selection:bg-yellow-400 selection:text-black font-sans">
+    <div className="min-h-screen bg-slate-950 selection:bg-yellow-400 selection:text-black" style={{ fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}>
       <PromoBar />
       <Navbar onBookClick={() => handleBookClick('global')} />
 
       <main>
         <Hero onBookClick={() => handleBookClick('global')} />
+        <StatsSection />
 
         {/* Simple 3-Step Process */}
-        <section id="process" className="py-24 bg-white relative overflow-hidden scroll-mt-20">
+        <section id="process" className="py-24 bg-slate-950 relative overflow-hidden scroll-mt-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-20">
-              <h2 className="text-sm font-black text-yellow-500 uppercase tracking-[0.4em] mb-4">The Dobson Method</h2>
-              <p className="text-4xl md:text-5xl font-black text-slate-950 uppercase tracking-tight">From Cloudy to <span className="text-yellow-500">Crystal Clear</span></p>
+              <h2 className="text-sm font-black text-yellow-400 uppercase tracking-[0.4em] mb-4">The Dobson Method</h2>
+              <p className="text-4xl md:text-5xl font-black text-white uppercase tracking-tight">From Cloudy to <span className="text-yellow-400">Crystal Clear</span></p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-12 items-start relative">
@@ -101,15 +104,15 @@ function App() {
                 }
               ].map((step, i) => (
                 <div key={i} className="flex flex-col items-center text-center group">
-                  <div className="w-24 h-24 bg-slate-950 rounded-[2.5rem] shadow-2xl flex items-center justify-center mb-8 relative border border-white/10 group-hover:bg-yellow-400 group-hover:scale-110 transition-all duration-500 shrink-0">
+                  <div className="w-24 h-24 bg-black rounded-[2.5rem] shadow-2xl flex items-center justify-center mb-8 relative border border-white/10 group-hover:bg-yellow-400 group-hover:scale-110 transition-all duration-500 shrink-0">
                     <step.Icon size={44} className="text-yellow-400 group-hover:text-black transition-colors" />
-                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 text-black rounded-full flex items-center justify-center font-black text-sm border-4 border-white shadow-lg">
+                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 text-black rounded-full flex items-center justify-center font-black text-sm border-4 border-slate-950 shadow-lg">
                       {i + 1}
                     </div>
                   </div>
                   <div className="max-w-[280px]">
-                    <h3 className="text-2xl font-black text-slate-900 mb-4 uppercase tracking-tighter">{step.title}</h3>
-                    <p className="text-slate-500 text-sm font-bold leading-relaxed">{step.desc}</p>
+                    <h3 className="text-2xl font-black text-white mb-4 uppercase tracking-tighter">{step.title}</h3>
+                    <p className="text-slate-400 text-sm font-bold leading-relaxed">{step.desc}</p>
                   </div>
                 </div>
               ))}
@@ -192,33 +195,33 @@ function App() {
         </section>
 
         {/* Local Service Areas */}
-        <section id="areas" className="py-24 bg-white border-y border-slate-100 scroll-mt-20">
+        <section id="areas" className="py-24 bg-slate-950 border-y border-white/5 scroll-mt-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-slate-50 rounded-[3rem] p-12 md:p-20 text-center border border-slate-100 relative overflow-hidden">
+            <div className="bg-white/5 rounded-3xl p-12 md:p-20 text-center border border-white/10 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-400/5 blur-[80px] -z-0"></div>
-              <h2 className="text-3xl font-black text-slate-900 mb-8 uppercase tracking-tight relative z-10">Southern Alberta's Specialist</h2>
-              <p className="text-slate-500 mb-12 max-w-2xl mx-auto text-lg font-bold leading-relaxed relative z-10">Serving Southern Alberta with professional restoration services.</p>
+              <h2 className="text-3xl font-black text-white mb-8 uppercase tracking-tight relative z-10">Southern Alberta's Specialist</h2>
+              <p className="text-slate-400 mb-12 max-w-2xl mx-auto text-lg font-bold leading-relaxed relative z-10">Serving Southern Alberta with professional restoration services.</p>
               <div className="flex flex-wrap justify-center items-center gap-4 relative z-10">
                 {SERVICE_AREAS.map(area => (
                   <button
                     key={area}
                     onClick={() => scrollTo('contact')}
-                    className="flex items-center justify-center px-8 py-4 bg-white border-2 border-slate-200 rounded-2xl text-xs font-black uppercase tracking-[0.2em] text-slate-900 shadow-sm hover:border-yellow-400 hover:text-yellow-600 hover:scale-105 transition-all cursor-pointer group min-w-[160px] text-center"
+                    className="flex items-center justify-center px-8 py-4 bg-white/5 border border-white/10 rounded-2xl text-xs font-black uppercase tracking-[0.2em] text-slate-300 hover:border-yellow-400 hover:text-yellow-400 hover:scale-105 transition-all duration-300 cursor-pointer min-w-[160px] text-center"
                   >
                     <span className="w-full text-center">{area}, AB</span>
                   </button>
                 ))}
               </div>
-              <p className="mt-12 text-sm text-slate-400 font-black italic tracking-widest relative z-10 uppercase">Don't see your town? Click a town to inquire!</p>
+              <p className="mt-12 text-sm text-slate-600 font-black italic tracking-widest relative z-10 uppercase">Don't see your town? Click a town to inquire!</p>
             </div>
           </div>
         </section>
 
         {/* Testimonials - Using Elfsight Widget */}
-        <section id="testimonials" className="py-24 bg-white scroll-mt-24 overflow-hidden">
+        <section className="py-24 bg-slate-950 scroll-mt-24 overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-black text-slate-900 uppercase tracking-tight mb-4">Real Facebook Reviews</h2>
+              <h2 className="text-4xl font-black text-white uppercase tracking-tight mb-4">Real Facebook Reviews</h2>
               <p className="text-slate-500 font-bold uppercase tracking-widest text-sm">Join hundreds of satisfied Southern Alberta drivers</p>
             </div>
 
@@ -230,9 +233,9 @@ function App() {
                 href="https://share.google/KYMPrdpx2hJIyl69o"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-slate-950 text-white rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-black transition-all shadow-xl border border-white/10"
+                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white/5 text-white rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white/10 transition-all duration-300 shadow-xl border border-white/10"
               >
-                <GoogleIcon /> <span>View All Google Reviews</span>
+                View All Google Reviews
               </a>
             </div>
           </div>
@@ -241,6 +244,8 @@ function App() {
         <Resources />
 
         <Services onBookClick={handleBookClick} onFleetClick={() => setIsFleetModalOpen(true)} />
+
+        <SocialProof />
 
         <FAQ />
 

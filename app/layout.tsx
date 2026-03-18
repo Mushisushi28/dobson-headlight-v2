@@ -172,12 +172,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://elfsightcdn.com" />
         <link rel="preload" as="image" href="https://i.ibb.co/QFhDNcgn/20260106-175851-1.jpg" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;600;700&display=swap"
           rel="stylesheet"
         />
         <script src="https://elfsightcdn.com/platform.js" async />
         <style>{`
-          body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+          body { font-family: 'Space Grotesk', 'Inter', sans-serif; scroll-behavior: smooth; }
           .bg-charcoal { background-color: #111827; }
           .text-headlight { color: #facc15; }
           .bg-headlight { background-color: #facc15; }

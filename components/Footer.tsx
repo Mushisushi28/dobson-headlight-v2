@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Facebook, Phone, Mail, MapPin } from 'lucide-react';
+import { Facebook, Phone, Mail } from 'lucide-react';
 import { SERVICE_AREAS } from '../constants';
 
 const FooterLogo: React.FC = () => (
@@ -8,7 +8,7 @@ const FooterLogo: React.FC = () => (
     <img
       src="/dobson-logo.png"
       alt="Dobson Headlight Restoration Logo"
-      className="h-80 w-auto object-contain"
+      className="h-24 w-auto object-contain"
     />
   </div>
 );
@@ -30,10 +30,11 @@ const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
           <div className="lg:col-span-2">
-            <div className="mb-8">
+            <div className="mb-4">
               <FooterLogo />
             </div>
-            <p className="text-slate-400 max-w-sm mb-10 text-lg font-medium leading-relaxed">
+            <p className="text-yellow-400 font-black text-xs uppercase tracking-widest mb-6">Lethbridge's #1 Headlight Restoration Service</p>
+            <p className="text-slate-400 max-w-sm mb-10 text-base font-medium leading-relaxed">
               Lethbridge's mobile specialist. We restore clarity, safety, and value to your vehicle starting at just $99.
             </p>
             <div className="flex gap-4">
@@ -87,9 +88,10 @@ const Footer: React.FC = () => {
 
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600">
           <p>© 2026 DOBSON HEADLIGHT RESTORATION. SOUTHERN ALBERTA LOCAL.</p>
+          <p className="text-yellow-400/50">Results Guaranteed or It's Free</p>
           <div className="flex gap-8">
-            <a href="https://share.google/KYMPrdpx2hJIyl69o" target="_blank" className="hover:text-white transition-colors">GOOGLE REVIEWS</a>
-            <a href="https://koalendar.com/e/meet-with-isaac-dobson" target="_blank" className="hover:text-white transition-colors">BOOK APPOINTMENT</a>
+            <a href="https://share.google/KYMPrdpx2hJIyl69o" target="_blank" className="hover:text-white transition-colors cursor-pointer">GOOGLE REVIEWS</a>
+            <a href="https://koalendar.com/e/meet-with-isaac-dobson" target="_blank" className="hover:text-white transition-colors cursor-pointer">BOOK APPOINTMENT</a>
           </div>
         </div>
       </div>
