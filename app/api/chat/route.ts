@@ -57,7 +57,7 @@ Key Information:
 
 const client = new OpenAI({
   apiKey: process.env.NEXT_PUBLIC_ZAI_API_KEY || '',
-  baseURL: 'https://api.z.ai/api/coding/paas/v4',
+  baseURL: 'https://api.z.ai/api/paas/v4',
 });
 
 export async function POST(req: NextRequest) {
