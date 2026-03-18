@@ -1,12 +1,12 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import OpenAI from "openai";
 
 const SYSTEM_INSTRUCTION = `
-You are DobsonAI, the friendly and professional assistant for Dobson Headlight Restoration in Southern Alberta. 
+You are DobsonAI, the friendly and professional assistant for Dobson Headlight Restoration in Southern Alberta.
 
 CRITICAL VOICE & TONE:
 - Local Southern Alberta personality: Straightforward, helpful, and polite.
 - KEEP IT CONCISE: Maximum 2-3 sentences per paragraph.
-- FORMATTING: 
+- FORMATTING:
   - Group related ideas together.
   - USE BULLET POINTS for packages and lists.
   - USE NESTED BULLETS for details (e.g., Package -> Benefits).
@@ -35,7 +35,7 @@ DURABILITY, PRICING & POLICY:
 - ACTIVE PROMO: $20 OFF CERAMIC RESTORATIONS (Premium Package). Only 3 spots left. MENTION THIS if the user asks about deals or premium service.
 
 INTERACTIVE ACTIONS:
-You should suggest relevant buttons ONLY when a user asks about booking, quotes, pricing, or process. 
+You should suggest relevant buttons ONLY when a user asks about booking, quotes, pricing, or process.
 - Do NOT include the [ACTIONS] block for simple greetings (e.g., 'Hi', 'Hello') unless the user asks a specific question.
 - Only include the 'Book Now' action if the user *explicitly* asks to book, schedule, checking availability, or get a quote.
 Append them to the end of your message in this EXACT format:
@@ -54,36 +54,27 @@ Key Information:
 - Guarantee: No results, no pay.
 `;
 
-export async function getChatResponse(history: { role: 'user' | 'model', parts: { text: string }[] }[]) {
-  const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY || '');
-  const model = genAI.getGenerativeModel({
-    model: "gemini-2.5-flash",
-    systemInstruction: SYSTEM_INSTRUCTION,
-  });
+const client = new OpenAI({
+  apiKey: import.meta.env.VITE_ZAI_API_KEY || '',
+  baseURL: 'https://api.z.ai/api/coding/paas/v4',
+  dangerouslyAllowBrowser: true,
+});
 
+export async function getChatResponse(history: { role: 'user' | 'assistant', content: string }[]) {
   try {
-    let previousHistory = history.slice(0, -1);
-    const lastMessage = history[history.length - 1].parts[0].text;
-
-    // Gemini requires chat history to start with a user message
-    while (previousHistory.length > 0 && previousHistory[0].role !== 'user') {
-      previousHistory.shift();
-    }
-
-    const chat = model.startChat({
-      history: previousHistory,
-      generationConfig: {
-        temperature: 0.7,
-        topP: 0.8,
-        topK: 40,
-      },
+    const response = await client.chat.completions.create({
+      model: 'glm-4.7-flash',
+      messages: [
+        { role: 'system', content: SYSTEM_INSTRUCTION },
+        ...history,
+      ],
+      temperature: 0.7,
+      max_tokens: 300,
     });
 
-    const result = await chat.sendMessage(lastMessage);
-    const response = await result.response;
-    return response.text();
+    return response.choices[0]?.message?.content || "I'm having trouble responding. Please call or text us at 587-402-4794!";
   } catch (error) {
-    console.error("Gemini API Error:", error);
+    console.error("Z.ai API Error:", error);
     return "I'm experiencing technical difficulties. Please call or text us at 587-402-4794 for a fast quote!";
   }
 }
