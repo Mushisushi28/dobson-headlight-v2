@@ -77,7 +77,10 @@ const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
               <div className="relative flex-1 h-full overflow-hidden">
                 <img
                   src="https://i.ibb.co/QFhDNcgn/20260106-175851-1.jpg"
-                  alt="Before Headlight Restoration"
+                  alt="Yellowed foggy headlights before professional restoration in Lethbridge Alberta"
+                  fetchPriority="high"
+                  width={600}
+                  height={450}
                   className="h-full w-full object-cover"
                 />
                 <div className="absolute top-4 left-4 px-3 py-1 bg-black/80 backdrop-blur-md text-white text-[10px] font-black uppercase tracking-widest rounded border border-white/10">Dangerous & Faded</div>
@@ -85,7 +88,9 @@ const Hero: React.FC<HeroProps> = ({ onBookClick }) => {
               <div className="relative flex-1 h-full border-t sm:border-t-0 sm:border-l border-white/20">
                 <img
                   src="https://i.ibb.co/TMwM05dB/20260106-183436-1.jpg"
-                  alt="After Headlight Restoration"
+                  alt="Crystal clear headlights after Dobson restoration service — Lethbridge AB"
+                  width={600}
+                  height={450}
                   className="h-full w-full object-cover"
                 />
                 <div className="absolute top-4 right-4 px-3 py-1 bg-yellow-400 text-black text-[10px] font-black uppercase tracking-widest rounded shadow-lg">Crystal Clear</div>
